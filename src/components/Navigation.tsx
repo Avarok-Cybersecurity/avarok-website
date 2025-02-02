@@ -23,11 +23,13 @@ export const Navigation = () => {
       <div className="container mx-auto pl-0 pr-4">
         <div className="flex items-center justify-between h-16">
           <a href="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/f3daa95e-1ba0-4727-8e80-ef4812bf21c2.png" 
-              alt="Avarok Logo" 
-              className="h-16 w-[240px] bg-white p-1"
-            />
+            <div className="h-16 w-[200px] bg-white flex items-center justify-center p-1">
+              <img 
+                src="/lovable-uploads/f3daa95e-1ba0-4727-8e80-ef4812bf21c2.png" 
+                alt="Avarok Logo" 
+                className="h-12 object-contain"
+              />
+            </div>
           </a>
 
           <div className="hidden md:flex items-center space-x-8">
