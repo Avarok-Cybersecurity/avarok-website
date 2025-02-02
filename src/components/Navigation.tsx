@@ -20,7 +20,7 @@ export const Navigation = () => {
         isScrolled ? "bg-[#5D3FD3]/90 backdrop-blur-lg shadow-sm" : "bg-[#5D3FD3]"
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto pl-0 pr-4">
         <div className="flex items-center justify-between h-16">
           <a href="/" className="flex items-center">
             <img 
