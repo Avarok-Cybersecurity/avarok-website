@@ -1,7 +1,7 @@
-import { Cpu, Lock, Users } from "lucide-react";
+import { Cpu, Lock, Users, FolderUp, Mail, Zap } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const features = [
+const topFeatures = [
   {
     icon: Cpu,
     title: "Rust/Tokio",
@@ -22,9 +22,31 @@ const features = [
   },
 ];
 
+const bottomFeatures = [
+  {
+    icon: FolderUp,
+    title: "File Transfer Scrambling",
+    description:
+      "All files transferred between client/server or peer-to-peer are scrambled with an independent key for higher security",
+  },
+  {
+    icon: Mail,
+    title: "Perfect Forward Secrecy + Best Effort Mode",
+    description:
+      "Each session can be configured to enforce perfect forward secrecy for maximum security, or best-effort mode for maximum throughput",
+  },
+  {
+    icon: Zap,
+    title: "Hybrid Cryptography",
+    description:
+      "Each session by default uses TLS or QUIC as a base layer coupled with the post-quantum Lusna Protocol for quantum resistance",
+  },
+];
+
 export const Features = () => {
   const headerAnimation = useScrollAnimation();
-  const featuresAnimation = useScrollAnimation();
+  const topFeaturesAnimation = useScrollAnimation();
+  const bottomFeaturesAnimation = useScrollAnimation();
 
   return (
     <section id="features" className="py-24 bg-white">
@@ -48,31 +70,62 @@ export const Features = () => {
           </p>
         </div>
 
-        <div 
-          ref={featuresAnimation.ref}
-          className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
-            featuresAnimation.isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}
-        >
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 group"
-              style={{
-                transitionDelay: `${index * 100}ms`
-              }}
-            >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
-                <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+        <div className="space-y-12">
+          {/* Top row */}
+          <div 
+            ref={topFeaturesAnimation.ref}
+            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
+              topFeaturesAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
+            {topFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 group"
+                style={{
+                  transitionDelay: `${index * 100}ms`
+                }}
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
+                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Bottom row with different background */}
+          <div 
+            ref={bottomFeaturesAnimation.ref}
+            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
+              bottomFeaturesAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
+            {bottomFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-all duration-300 group"
+                style={{
+                  transitionDelay: `${index * 100}ms`
+                }}
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
+                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
