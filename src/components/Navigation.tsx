@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Navigation = () => {
@@ -17,82 +17,77 @@ export const Navigation = () => {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/80 backdrop-blur-lg shadow-sm py-4"
-          : "bg-transparent py-6"
+        isScrolled ? "bg-[#5D3FD3]/90 backdrop-blur-lg shadow-sm" : "bg-[#5D3FD3]"
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold text-primary">
-            Avarok
+        <div className="flex items-center justify-between h-16">
+          <a href="/" className="text-2xl font-bold text-white flex items-center gap-2">
+            <span className="text-3xl">Å</span>
+            <span>AVAROK</span>
           </a>
 
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#features"
-              className="text-gray-600 hover:text-primary transition-colors"
-            >
+            <a href="#source" className="text-white/90 hover:text-white transition-colors">
+              Source Code
+            </a>
+            <a href="#features" className="text-white/90 hover:text-white transition-colors">
               Features
             </a>
-            <a
-              href="#testimonials"
-              className="text-gray-600 hover:text-primary transition-colors"
-            >
-              Testimonials
+            <a href="#contact" className="text-white/90 hover:text-white transition-colors">
+              Contact
             </a>
-            <a
-              href="#pricing"
-              className="text-gray-600 hover:text-primary transition-colors"
-            >
-              Pricing
+            <a href="#docs" className="text-white/90 hover:text-white transition-colors">
+              Docs
+            </a>
+            <a href="#legal" className="text-white/90 hover:text-white transition-colors">
+              Legal
             </a>
             <Button
-              variant="default"
-              className="bg-primary hover:bg-primary/90 text-white"
+              variant="ghost"
+              className="text-white hover:bg-white/20"
             >
-              Get Started
+              <User className="mr-2 h-4 w-4" />
+              Log In
             </Button>
           </div>
 
           <button
-            className="md:hidden"
+            className="md:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-gray-600" />
+              <X className="h-6 w-6" />
             ) : (
-              <Menu className="h-6 w-6 text-gray-600" />
+              <Menu className="h-6 w-6" />
             )}
           </button>
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4 animate-fade-in">
+          <div className="md:hidden mt-4 bg-white/10 backdrop-blur-lg rounded-lg p-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <a
-                href="#features"
-                className="text-gray-600 hover:text-primary transition-colors"
-              >
+              <a href="#source" className="text-white/90 hover:text-white transition-colors">
+                Source Code
+              </a>
+              <a href="#features" className="text-white/90 hover:text-white transition-colors">
                 Features
               </a>
-              <a
-                href="#testimonials"
-                className="text-gray-600 hover:text-primary transition-colors"
-              >
-                Testimonials
+              <a href="#contact" className="text-white/90 hover:text-white transition-colors">
+                Contact
               </a>
-              <a
-                href="#pricing"
-                className="text-gray-600 hover:text-primary transition-colors"
-              >
-                Pricing
+              <a href="#docs" className="text-white/90 hover:text-white transition-colors">
+                Docs
+              </a>
+              <a href="#legal" className="text-white/90 hover:text-white transition-colors">
+                Legal
               </a>
               <Button
-                variant="default"
-                className="bg-primary hover:bg-primary/90 text-white w-full"
+                variant="ghost"
+                className="text-white hover:bg-white/20 w-full justify-start"
               >
-                Get Started
+                <User className="mr-2 h-4 w-4" />
+                Log In
               </Button>
             </div>
           </div>
