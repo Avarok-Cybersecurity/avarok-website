@@ -26,7 +26,7 @@ export const Navigation = () => {
             <img 
               src="/lovable-uploads/f3daa95e-1ba0-4727-8e80-ef4812bf21c2.png" 
               alt="Avarok Logo" 
-              className="h-16 bg-white rounded-sm p-1"
+              className="h-16 w-[240px] bg-white p-1"
             />
           </a>
 
