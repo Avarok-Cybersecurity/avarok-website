@@ -15,7 +15,7 @@ export const Hero = () => {
         await img.decode(); // Wait for the image to be decoded
         console.log("Background image loaded successfully");
         setBgImage(imageUrl);
-        setIsImageLoaded(true);
+        setTimeout(() => setIsImageLoaded(true), 100); // Small delay for smoother transition
       } catch (error) {
         console.error("Error loading background image:", error);
       }

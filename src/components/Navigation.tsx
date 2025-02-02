@@ -20,7 +20,7 @@ export const Navigation = () => {
         isScrolled ? "bg-[#6D52D8]/90 backdrop-blur-lg shadow-sm" : "bg-[#6D52D8]"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between h-16">
+      <div className="flex items-center justify-between h-16">
         <a href="/" className="flex items-center">
           <div className="h-16 w-[200px] bg-white flex items-center justify-center p-1">
             <img 
@@ -31,7 +31,7 @@ export const Navigation = () => {
           </div>
         </a>
 
-        <div className="hidden md:flex items-center space-x-8 pr-8">
+        <div className="hidden md:flex items-center space-x-8 mr-8">
           <a href="#source" className="text-white/90 hover:text-white transition-colors">
             Source Code
           </a>
@@ -57,7 +57,7 @@ export const Navigation = () => {
         </div>
 
         <button
-          className="md:hidden text-white pr-8"
+          className="md:hidden text-white mr-8"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
