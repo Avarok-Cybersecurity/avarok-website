@@ -1,30 +1,24 @@
-import { Zap, Shield, Smartphone, Globe } from "lucide-react";
+import { Cpu, Lock, Users } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const features = [
   {
-    icon: Zap,
-    title: "Lightning Fast",
+    icon: Cpu,
+    title: "Rust/Tokio",
     description:
-      "Experience blazing-fast performance with our optimized infrastructure.",
+      "SDK built using 100% safe rust for maximum security and performance. Powered using the Tokio asynchronous runtime",
   },
   {
-    icon: Shield,
-    title: "Secure by Design",
+    icon: Lock,
+    title: "Extreme Security",
     description:
-      "Your data is protected with enterprise-grade security measures.",
+      "Post-quantum key exchange, multi-layered ratcheting, per-message adjustable multi-layered cryptography, and many other adjustable options",
   },
   {
-    icon: Smartphone,
-    title: "Mobile First",
+    icon: Users,
+    title: "P2P",
     description:
-      "Perfectly optimized for all devices, ensuring a seamless experience.",
-  },
-  {
-    icon: Globe,
-    title: "Global Scale",
-    description:
-      "Deploy worldwide with our distributed network of servers.",
+      "Includes built-in NAT traversal for enabling the use of peer to peer applications",
   },
 ];
 
@@ -56,7 +50,7 @@ export const Features = () => {
 
         <div 
           ref={featuresAnimation.ref}
-          className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-1000 transform ${
+          className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
             featuresAnimation.isVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-10'
