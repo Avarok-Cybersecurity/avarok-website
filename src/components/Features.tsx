@@ -50,7 +50,7 @@ export const Features = () => {
             Everything you need to succeed
           </h2>
           <p className="mt-4 text-xl text-gray-600">
-            Powerful features to help you take control of your digital presence
+            Powerful solutions to enable digital security and sovereignty for people, businesses, and government
           </p>
         </div>
 
