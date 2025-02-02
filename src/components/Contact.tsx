@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
@@ -17,6 +17,21 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    const serviceId = process.env.EMAILJS_SERVICE_ID;
+    const templateId = process.env.EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS environment variables are not set');
+      toast({
+        title: "Configuration Error",
+        description: "Email service is not properly configured.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const templateParams = {
         from_name: name,
@@ -26,10 +41,10 @@ export const Contact = () => {
       };
 
       await emailjs.send(
-        'service_avarok',  // Service ID from EmailJS
-        'template_avarok', // Template ID from EmailJS
+        serviceId,
+        templateId,
         templateParams,
-        'YOUR_PUBLIC_KEY'  // Public Key from EmailJS
+        publicKey
       );
 
       toast({
@@ -54,9 +69,9 @@ export const Contact = () => {
   };
 
   return (
-    <section className="relative">
+    <section id="contact" className="relative">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/99754b9b-d1e8-46f9-9afd-9177f1c99500.png')] bg-cover bg-center bg-no-repeat brightness-[0.15]" />
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/99754b9b-d1e8-46f9-afd-9177f1c99500.png')] bg-cover bg-center bg-no-repeat brightness-[0.15]" />
       
       {/* Contact Form */}
       <div className="relative py-24 container mx-auto px-4">
@@ -113,20 +128,8 @@ export const Contact = () => {
       {/* Bottom Bar */}
       <div className="relative bg-[#6D52D8] py-6">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center space-x-6">
-            <a href="#" className="text-white hover:text-white/80 transition-colors">
-              <Facebook className="w-6 h-6" />
-              <span className="sr-only">Facebook</span>
-            </a>
-            <a href="#" className="text-white hover:text-white/80 transition-colors">
-              <Twitter className="w-6 h-6" />
-              <span className="sr-only">Twitter</span>
-            </a>
-            <a href="#" className="text-white hover:text-white/80 transition-colors">
-              <Instagram className="w-6 h-6" />
-              <span className="sr-only">Instagram</span>
-            </a>
-            <a href="#" className="text-white hover:text-white/80 transition-colors">
+          <div className="flex justify-center">
+            <a href="https://www.linkedin.com/company/avarok/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/80 transition-colors">
               <Linkedin className="w-6 h-6" />
               <span className="sr-only">LinkedIn</span>
             </a>

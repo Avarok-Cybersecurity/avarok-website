@@ -68,8 +68,11 @@ export const Hero = () => {
             <Button
               size="lg"
               className="bg-[#5D3FD3] hover:bg-[#5D3FD3]/90 text-white min-w-[200px] text-lg"
+              asChild
             >
-              Explore SDK
+              <a href="https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/" target="_blank" rel="noopener noreferrer">
+                Explore SDK
+              </a>
             </Button>
           </div>
         </div>
