@@ -3,14 +3,25 @@ import { useState, useEffect } from "react";
 
 export const Hero = () => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [bgImage, setBgImage] = useState<string | null>(null);
 
   useEffect(() => {
-    const img = new Image();
-    img.src = "/lovable-uploads/c65270fb-3f6f-4f6f-998d-e6f281df9ce3.png";
-    img.onload = () => {
-      console.log("Background image loaded");
-      setIsImageLoaded(true);
+    // Lazy load the background image
+    const loadImage = async () => {
+      try {
+        const imageUrl = "/lovable-uploads/c65270fb-3f6f-4f6f-998d-e6f281df9ce3.png";
+        const img = new Image();
+        img.src = imageUrl;
+        await img.decode(); // Wait for the image to be decoded
+        console.log("Background image loaded successfully");
+        setBgImage(imageUrl);
+        setIsImageLoaded(true);
+      } catch (error) {
+        console.error("Error loading background image:", error);
+      }
     };
+
+    loadImage();
   }, []);
 
   return (
@@ -19,17 +30,19 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-black" />
       
       {/* Background image with fade-in effect */}
-      <div 
-        className={`absolute inset-0 bg-black transition-opacity duration-1000 ${
-          isImageLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{
-          backgroundImage: `url('/lovable-uploads/c65270fb-3f6f-4f6f-998d-e6f281df9ce3.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+      {bgImage && (
+        <div 
+          className={`absolute inset-0 bg-black transition-opacity duration-1000 ${
+            isImageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            backgroundImage: `url('${bgImage}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+      )}
       
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" />
