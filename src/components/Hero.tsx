@@ -1,33 +1,57 @@
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 export const Hero = () => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/lovable-uploads/c65270fb-3f6f-4f6f-998d-e6f281df9ce3.png";
+    img.onload = () => {
+      console.log("Background image loaded");
+      setIsImageLoaded(true);
+    };
+  }, []);
+
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center bg-black bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundBlendMode: 'overlay',
-      }}
-    >
+    <div className="relative min-h-screen flex items-center justify-center">
+      {/* Placeholder background color while image loads */}
+      <div className="absolute inset-0 bg-black" />
+      
+      {/* Background image with fade-in effect */}
+      <div 
+        className={`absolute inset-0 bg-black transition-opacity duration-1000 ${
+          isImageLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          backgroundImage: `url('/lovable-uploads/c65270fb-3f6f-4f6f-998d-e6f281df9ce3.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" />
       
       <div className="container mx-auto px-4 relative">
         <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight animate-fade-in">
             Cutting Edge<br />
             Cybersecurity For Future<br />
             Web Applications
           </h1>
           
           <div className="space-y-4">
-            <p className="text-lg md:text-xl text-white/90 bg-[#5D3FD3]/30 backdrop-blur-sm px-6 py-3 rounded-full inline-block">
+            <p className="text-lg md:text-xl text-white/90 bg-[#5D3FD3]/30 backdrop-blur-sm px-6 py-3 rounded-full inline-block animate-fade-in" style={{ animationDelay: '200ms' }}>
               All-in-one quantum-resistant cryptography, authentication, P2P, file-sharing, and patent-pending messaging SDK
             </p>
-            <p className="text-lg text-white/80">
+            <p className="text-lg text-white/80 animate-fade-in" style={{ animationDelay: '400ms' }}>
               With advanced multi-layered cryptography and ratcheting
             </p>
           </div>
 
-          <div className="pt-4">
+          <div className="pt-4 animate-fade-in" style={{ animationDelay: '600ms' }}>
             <Button
               size="lg"
               className="bg-[#5D3FD3] hover:bg-[#5D3FD3]/90 text-white min-w-[200px] text-lg"
