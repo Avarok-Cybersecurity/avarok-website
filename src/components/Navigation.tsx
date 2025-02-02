@@ -17,10 +17,10 @@ export const Navigation = () => {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-[#5D3FD3]/90 backdrop-blur-lg shadow-sm" : "bg-[#5D3FD3]"
+        isScrolled ? "bg-[#6D52D8]/90 backdrop-blur-lg shadow-sm" : "bg-[#6D52D8]"
       }`}
     >
-      <div className="container mx-auto pl-0 pr-4">
+      <div className="container mx-auto px-0">
         <div className="flex items-center justify-between h-16">
           <a href="/" className="flex items-center">
             <div className="h-16 w-[200px] bg-white flex items-center justify-center p-1">
@@ -32,7 +32,7 @@ export const Navigation = () => {
             </div>
           </a>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 pr-4 ml-auto">
             <a href="#source" className="text-white/90 hover:text-white transition-colors">
               Source Code
             </a>
@@ -58,7 +58,7 @@ export const Navigation = () => {
           </div>
 
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-white pr-4"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
