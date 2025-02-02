@@ -1,4 +1,4 @@
-import { Cpu, Lock, Users, FolderUp, Mail, Zap, KeyRound, Shield, Key } from "lucide-react";
+import { Cpu, Lock, Users, FolderUp, Mail, Zap, KeyRound, Shield, Key, Database, Network, Server } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const topFeatures = [
@@ -64,11 +64,33 @@ const bottomFeatures = [
   },
 ];
 
+const extraFeatures = [
+  {
+    icon: Network,
+    title: "Single/Multi-Threaded Modes",
+    description:
+      "Easily change between single and multi-threaded protocol event loops at compile-time to fine-tune to the requirements of your application",
+  },
+  {
+    icon: Database,
+    title: "Scalable Backends",
+    description:
+      "Configure your application to use a MySQL, PostgreSQL, SQLite, or Redis backends to scale your application across a network",
+  },
+  {
+    icon: Server,
+    title: "Distributed Systems",
+    description:
+      "Build distributed systems with ease using our battle-tested networking and synchronization primitives",
+  },
+];
+
 export const Features = () => {
   const headerAnimation = useScrollAnimation();
   const topFeaturesAnimation = useScrollAnimation();
   const middleFeaturesAnimation = useScrollAnimation();
   const bottomFeaturesAnimation = useScrollAnimation();
+  const extraFeaturesAnimation = useScrollAnimation();
 
   return (
     <section id="features" className="py-24 bg-white">
@@ -93,7 +115,6 @@ export const Features = () => {
         </div>
 
         <div className="space-y-12">
-          {/* Top row */}
           <div 
             ref={topFeaturesAnimation.ref}
             className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
@@ -121,7 +142,6 @@ export const Features = () => {
             ))}
           </div>
 
-          {/* Middle row */}
           <div 
             ref={middleFeaturesAnimation.ref}
             className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
@@ -149,7 +169,6 @@ export const Features = () => {
             ))}
           </div>
 
-          {/* Bottom row */}
           <div 
             ref={bottomFeaturesAnimation.ref}
             className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
@@ -162,6 +181,34 @@ export const Features = () => {
               <div
                 key={index}
                 className="p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 group"
+                style={{
+                  transitionDelay: `${index * 100}ms`
+                }}
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
+                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Extra row */}
+          <div 
+            ref={extraFeaturesAnimation.ref}
+            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
+              extraFeaturesAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
+            {extraFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-all duration-300 group"
                 style={{
                   transitionDelay: `${index * 100}ms`
                 }}
