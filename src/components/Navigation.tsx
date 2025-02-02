@@ -22,9 +22,12 @@ export const Navigation = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <a href="/" className="text-2xl font-bold text-white flex items-center gap-2">
-            <span className="text-3xl">Å</span>
-            <span>AVAROK</span>
+          <a href="/" className="flex items-center gap-2">
+            <img 
+              src="/lovable-uploads/f3daa95e-1ba0-4727-8e80-ef4812bf21c2.png" 
+              alt="Avarok Logo" 
+              className="h-8 bg-white rounded-sm p-0.5"
+            />
           </a>
 
           <div className="hidden md:flex items-center space-x-8">
