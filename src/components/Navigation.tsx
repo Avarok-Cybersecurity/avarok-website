@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,6 +19,11 @@ export const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToContact = () => {
+    const contactSection = document.querySelector('#contact');
+    contactSection?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <nav
@@ -37,7 +48,7 @@ export const Navigation = () => {
             className="text-white hover:bg-white/20"
             asChild
           >
-            <a href="#source">Source Code</a>
+            <a href="https://github.com/Avarok-Cybersecurity/Citadel-Protocol" target="_blank" rel="noopener noreferrer">Source Code</a>
           </Button>
           <Button
             variant="ghost"
@@ -49,31 +60,38 @@ export const Navigation = () => {
           <Button
             variant="ghost"
             className="text-white hover:bg-white/20"
-            asChild
+            onClick={scrollToContact}
           >
-            <a href="#contact">Contact</a>
+            Contact
           </Button>
           <Button
             variant="ghost"
             className="text-white hover:bg-white/20"
             asChild
           >
-            <a href="#docs">Docs</a>
+            <a href="https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/" target="_blank" rel="noopener noreferrer">Docs</a>
           </Button>
-          <Button
-            variant="ghost"
-            className="text-white hover:bg-white/20"
-            asChild
-          >
-            <a href="#legal">Legal</a>
-          </Button>
-          <Button
-            variant="ghost"
-            className="text-white hover:bg-white/20"
-          >
-            <User className="mr-2 h-4 w-4" />
-            Log In
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="text-white hover:bg-white/20">
+                Legal
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56 bg-white/90 backdrop-blur-sm">
+              <DropdownMenuItem asChild>
+                <a href="/cookie-policy" className="w-full">Cookie Policy</a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="/acceptable-use" className="w-full">Acceptable Use Policy</a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="/privacy-policy" className="w-full">Privacy Policy</a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="/terms" className="w-full">Terms and Conditions</a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <button
@@ -96,7 +114,7 @@ export const Navigation = () => {
               className="text-white hover:bg-white/20 w-full justify-start"
               asChild
             >
-              <a href="#source">Source Code</a>
+              <a href="https://github.com/Avarok-Cybersecurity/Citadel-Protocol" target="_blank" rel="noopener noreferrer">Source Code</a>
             </Button>
             <Button
               variant="ghost"
@@ -108,31 +126,38 @@ export const Navigation = () => {
             <Button
               variant="ghost"
               className="text-white hover:bg-white/20 w-full justify-start"
-              asChild
+              onClick={scrollToContact}
             >
-              <a href="#contact">Contact</a>
+              Contact
             </Button>
             <Button
               variant="ghost"
               className="text-white hover:bg-white/20 w-full justify-start"
               asChild
             >
-              <a href="#docs">Docs</a>
+              <a href="https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/" target="_blank" rel="noopener noreferrer">Docs</a>
             </Button>
-            <Button
-              variant="ghost"
-              className="text-white hover:bg-white/20 w-full justify-start"
-              asChild
-            >
-              <a href="#legal">Legal</a>
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-white hover:bg-white/20 w-full justify-start"
-            >
-              <User className="mr-2 h-4 w-4" />
-              Log In
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-white hover:bg-white/20 w-full justify-start">
+                  Legal
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56 bg-white/90 backdrop-blur-sm">
+                <DropdownMenuItem asChild>
+                  <a href="/cookie-policy" className="w-full">Cookie Policy</a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="/acceptable-use" className="w-full">Acceptable Use Policy</a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="/privacy-policy" className="w-full">Privacy Policy</a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="/terms" className="w-full">Terms and Conditions</a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       )}
