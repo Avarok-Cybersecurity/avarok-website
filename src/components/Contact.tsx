@@ -4,27 +4,53 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", { name, email, message });
+    setIsSubmitting(true);
     
-    // Show success toast
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
-    
-    // Reset form
-    setName("");
-    setEmail("");
-    setMessage("");
+    try {
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        to_email: 'thomas@avarok.net',
+        message: message,
+      };
+
+      await emailjs.send(
+        'service_avarok',  // Service ID from EmailJS
+        'template_avarok', // Template ID from EmailJS
+        templateParams,
+        'YOUR_PUBLIC_KEY'  // Public Key from EmailJS
+      );
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+
+      // Reset form
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -48,6 +74,7 @@ export const Contact = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="bg-white/90 backdrop-blur-sm border-0"
+              required
             />
             <Input
               type="email"
@@ -55,6 +82,7 @@ export const Contact = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="bg-white/90 backdrop-blur-sm border-0"
+              required
             />
           </div>
           <Textarea
@@ -62,9 +90,14 @@ export const Contact = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="min-h-[150px] bg-white/90 backdrop-blur-sm border-0"
+            required
           />
-          <Button type="submit" className="w-full bg-[#6D52D8] hover:bg-[#6D52D8]/90">
-            Submit
+          <Button 
+            type="submit" 
+            className="w-full bg-[#6D52D8] hover:bg-[#6D52D8]/90"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Submit"}
           </Button>
         </form>
 
