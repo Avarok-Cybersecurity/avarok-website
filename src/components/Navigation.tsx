@@ -32,21 +32,41 @@ export const Navigation = () => {
         </a>
 
         <div className="hidden md:flex items-center space-x-8 mr-8">
-          <a href="#source" className="text-white/90 hover:text-white transition-colors">
-            Source Code
-          </a>
-          <a href="#features" className="text-white/90 hover:text-white transition-colors">
-            Features
-          </a>
-          <a href="#contact" className="text-white/90 hover:text-white transition-colors">
-            Contact
-          </a>
-          <a href="#docs" className="text-white/90 hover:text-white transition-colors">
-            Docs
-          </a>
-          <a href="#legal" className="text-white/90 hover:text-white transition-colors">
-            Legal
-          </a>
+          <Button
+            variant="ghost"
+            className="text-white hover:bg-white/20"
+            asChild
+          >
+            <a href="#source">Source Code</a>
+          </Button>
+          <Button
+            variant="ghost"
+            className="text-white hover:bg-white/20"
+            asChild
+          >
+            <a href="#features">Features</a>
+          </Button>
+          <Button
+            variant="ghost"
+            className="text-white hover:bg-white/20"
+            asChild
+          >
+            <a href="#contact">Contact</a>
+          </Button>
+          <Button
+            variant="ghost"
+            className="text-white hover:bg-white/20"
+            asChild
+          >
+            <a href="#docs">Docs</a>
+          </Button>
+          <Button
+            variant="ghost"
+            className="text-white hover:bg-white/20"
+            asChild
+          >
+            <a href="#legal">Legal</a>
+          </Button>
           <Button
             variant="ghost"
             className="text-white hover:bg-white/20"
@@ -71,21 +91,41 @@ export const Navigation = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden mt-4 bg-white/10 backdrop-blur-lg rounded-lg p-4 animate-fade-in">
           <div className="flex flex-col space-y-4">
-            <a href="#source" className="text-white/90 hover:text-white transition-colors">
-              Source Code
-            </a>
-            <a href="#features" className="text-white/90 hover:text-white transition-colors">
-              Features
-            </a>
-            <a href="#contact" className="text-white/90 hover:text-white transition-colors">
-              Contact
-            </a>
-            <a href="#docs" className="text-white/90 hover:text-white transition-colors">
-              Docs
-            </a>
-            <a href="#legal" className="text-white/90 hover:text-white transition-colors">
-              Legal
-            </a>
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/20 w-full justify-start"
+              asChild
+            >
+              <a href="#source">Source Code</a>
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/20 w-full justify-start"
+              asChild
+            >
+              <a href="#features">Features</a>
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/20 w-full justify-start"
+              asChild
+            >
+              <a href="#contact">Contact</a>
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/20 w-full justify-start"
+              asChild
+            >
+              <a href="#docs">Docs</a>
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/20 w-full justify-start"
+              asChild
+            >
+              <a href="#legal">Legal</a>
+            </Button>
             <Button
               variant="ghost"
               className="text-white hover:bg-white/20 w-full justify-start"
