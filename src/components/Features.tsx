@@ -1,4 +1,4 @@
-import { Cpu, Lock, Users, FolderUp, Mail, Zap } from "lucide-react";
+import { Cpu, Lock, Users, FolderUp, Mail, Zap, KeyRound, Shield, Key } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const topFeatures = [
@@ -22,7 +22,7 @@ const topFeatures = [
   },
 ];
 
-const bottomFeatures = [
+const middleFeatures = [
   {
     icon: FolderUp,
     title: "File Transfer Scrambling",
@@ -43,9 +43,31 @@ const bottomFeatures = [
   },
 ];
 
+const bottomFeatures = [
+  {
+    icon: KeyRound,
+    title: "Argon2id Password Hashing",
+    description:
+      "A built-in parameter autotuner and authenticator allows creating secure authenticated sessions seemlessly",
+  },
+  {
+    icon: Shield,
+    title: "Passwordless Authentication",
+    description:
+      "Configure sessions to use passwordless authentication for connections",
+  },
+  {
+    icon: Key,
+    title: "Credentialed Authentication",
+    description:
+      "Configure sessions to use credentials for added security",
+  },
+];
+
 export const Features = () => {
   const headerAnimation = useScrollAnimation();
   const topFeaturesAnimation = useScrollAnimation();
+  const middleFeaturesAnimation = useScrollAnimation();
   const bottomFeaturesAnimation = useScrollAnimation();
 
   return (
@@ -99,7 +121,35 @@ export const Features = () => {
             ))}
           </div>
 
-          {/* Bottom row with different background */}
+          {/* Middle row */}
+          <div 
+            ref={middleFeaturesAnimation.ref}
+            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
+              middleFeaturesAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
+            {middleFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-all duration-300 group"
+                style={{
+                  transitionDelay: `${index * 100}ms`
+                }}
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
+                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom row */}
           <div 
             ref={bottomFeaturesAnimation.ref}
             className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
@@ -111,7 +161,7 @@ export const Features = () => {
             {bottomFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-all duration-300 group"
+                className="p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 group"
                 style={{
                   transitionDelay: `${index * 100}ms`
                 }}
