@@ -5,12 +5,24 @@ import { CookiePolicy } from "./CookiePolicy";
 import { PrivacyPolicy } from "./PrivacyPolicy";
 import { Terms } from "./Terms";
 
-export const LegalMenu = () => {
+interface LegalMenuProps {
+  onSelectCookiePolicy: () => void;
+  onSelectAcceptableUse: () => void;
+  onSelectPrivacyPolicy: () => void;
+  onSelectTerms: () => void;
+}
+
+export const LegalMenu = ({
+  onSelectCookiePolicy,
+  onSelectAcceptableUse,
+  onSelectPrivacyPolicy,
+  onSelectTerms
+}: LegalMenuProps) => {
   const [activeDialog, setActiveDialog] = useState<string | null>(null);
 
   const closeDialog = () => {
     setActiveDialog(null);
-    // Force a reflow to ensure styles are properly reset
+    // Reset any lingering styles
     document.body.style.removeProperty('pointer-events');
     document.body.style.removeProperty('overflow');
     console.log('Dialog closed, styles reset');
@@ -21,48 +33,31 @@ export const LegalMenu = () => {
       <Button
         variant="link"
         className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => setActiveDialog('terms')}
+        onClick={() => onSelectTerms()}
       >
         Terms
       </Button>
       <Button
         variant="link"
         className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => setActiveDialog('privacy')}
+        onClick={() => onSelectPrivacyPolicy()}
       >
         Privacy
       </Button>
       <Button
         variant="link"
         className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => setActiveDialog('cookies')}
+        onClick={() => onSelectCookiePolicy()}
       >
         Cookies
       </Button>
       <Button
         variant="link"
         className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => setActiveDialog('acceptable-use')}
+        onClick={() => onSelectAcceptableUse()}
       >
         Acceptable Use
       </Button>
-
-      <Terms 
-        open={activeDialog === 'terms'} 
-        onOpenChange={() => closeDialog()} 
-      />
-      <PrivacyPolicy 
-        open={activeDialog === 'privacy'} 
-        onOpenChange={() => closeDialog()} 
-      />
-      <CookiePolicy 
-        open={activeDialog === 'cookies'} 
-        onOpenChange={() => closeDialog()} 
-      />
-      <AcceptableUse 
-        open={activeDialog === 'acceptable-use'} 
-        onOpenChange={() => closeDialog()} 
-      />
     </div>
   );
 };

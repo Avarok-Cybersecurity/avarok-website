@@ -23,29 +23,20 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Clean up function to reset all dialog-related styles
   const resetDialogStyles = () => {
-    // Remove any lingering pointer-events styles
     document.body.style.removeProperty('pointer-events');
-    // Remove any lingering overflow styles
     document.body.style.removeProperty('overflow');
-    // Remove any aria-hidden attributes that might have been left
     document.querySelectorAll('[aria-hidden="true"]').forEach((el) => {
       el.removeAttribute('aria-hidden');
     });
-    // Force a reflow
     void document.body.offsetHeight;
-    // Log for debugging
     console.log('Dialog styles reset');
   };
 
   const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
     if (!open) {
-      // First update the state
       setStateFunction(false);
-      // Then clean up styles
       resetDialogStyles();
-      // Add a small delay to ensure cleanup
       setTimeout(resetDialogStyles, 100);
     } else {
       setStateFunction(true);
@@ -169,19 +160,19 @@ export const Navigation = () => {
 
       <CookiePolicy 
         open={isCookiePolicyOpen} 
-        onOpenChange={(open) => handleDialogChange(open, setIsCookiePolicyOpen)}
+        onOpenChange={(open: boolean) => handleDialogChange(open, setIsCookiePolicyOpen)}
       />
       <AcceptableUse 
         open={isAcceptableUseOpen} 
-        onOpenChange={(open) => handleDialogChange(open, setIsAcceptableUseOpen)}
+        onOpenChange={(open: boolean) => handleDialogChange(open, setIsAcceptableUseOpen)}
       />
       <PrivacyPolicy 
         open={isPrivacyPolicyOpen} 
-        onOpenChange={(open) => handleDialogChange(open, setIsPrivacyPolicyOpen)}
+        onOpenChange={(open: boolean) => handleDialogChange(open, setIsPrivacyPolicyOpen)}
       />
       <Terms 
         open={isTermsOpen} 
-        onOpenChange={(open) => handleDialogChange(open, setIsTermsOpen)}
+        onOpenChange={(open: boolean) => handleDialogChange(open, setIsTermsOpen)}
       />
 
       <div 
