@@ -1,45 +1,68 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { AcceptableUse } from "./AcceptableUse";
+import { CookiePolicy } from "./CookiePolicy";
+import { PrivacyPolicy } from "./PrivacyPolicy";
+import { Terms } from "./Terms";
 
-interface LegalMenuProps {
-  onSelectCookiePolicy: () => void;
-  onSelectAcceptableUse: () => void;
-  onSelectPrivacyPolicy: () => void;
-  onSelectTerms: () => void;
-}
+export const LegalMenu = () => {
+  const [activeDialog, setActiveDialog] = useState<string | null>(null);
 
-export const LegalMenu = ({
-  onSelectCookiePolicy,
-  onSelectAcceptableUse,
-  onSelectPrivacyPolicy,
-  onSelectTerms,
-}: LegalMenuProps) => {
+  const closeDialog = () => {
+    setActiveDialog(null);
+    // Force a reflow to ensure styles are properly reset
+    document.body.style.removeProperty('pointer-events');
+    document.body.style.removeProperty('overflow');
+    console.log('Dialog closed, styles reset');
+  };
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="text-white hover:bg-white/20">
-          Legal
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-white/90 backdrop-blur-sm">
-        <DropdownMenuItem onSelect={onSelectCookiePolicy}>
-          Cookie Policy
-        </DropdownMenuItem>
-        <DropdownMenuItem onSelect={onSelectAcceptableUse}>
-          Acceptable Use Policy
-        </DropdownMenuItem>
-        <DropdownMenuItem onSelect={onSelectPrivacyPolicy}>
-          Privacy Policy
-        </DropdownMenuItem>
-        <DropdownMenuItem onSelect={onSelectTerms}>
-          Terms and Conditions
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="flex flex-wrap gap-4 items-center justify-center">
+      <Button
+        variant="link"
+        className="text-sm text-muted-foreground hover:text-primary"
+        onClick={() => setActiveDialog('terms')}
+      >
+        Terms
+      </Button>
+      <Button
+        variant="link"
+        className="text-sm text-muted-foreground hover:text-primary"
+        onClick={() => setActiveDialog('privacy')}
+      >
+        Privacy
+      </Button>
+      <Button
+        variant="link"
+        className="text-sm text-muted-foreground hover:text-primary"
+        onClick={() => setActiveDialog('cookies')}
+      >
+        Cookies
+      </Button>
+      <Button
+        variant="link"
+        className="text-sm text-muted-foreground hover:text-primary"
+        onClick={() => setActiveDialog('acceptable-use')}
+      >
+        Acceptable Use
+      </Button>
+
+      <Terms 
+        open={activeDialog === 'terms'} 
+        onOpenChange={() => closeDialog()} 
+      />
+      <PrivacyPolicy 
+        open={activeDialog === 'privacy'} 
+        onOpenChange={() => closeDialog()} 
+      />
+      <CookiePolicy 
+        open={activeDialog === 'cookies'} 
+        onOpenChange={() => closeDialog()} 
+      />
+      <AcceptableUse 
+        open={activeDialog === 'acceptable-use'} 
+        onOpenChange={() => closeDialog()} 
+      />
+    </div>
   );
 };

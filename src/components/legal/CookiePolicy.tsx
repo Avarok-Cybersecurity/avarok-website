@@ -3,23 +3,19 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "@/components/ui/dialog";
 
 interface CookiePolicyProps {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onOpenChange: () => void;
 }
 
 export const CookiePolicy = ({ open, onOpenChange }: CookiePolicyProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle>Cookie Policy for Avarok</DialogTitle>
-          <DialogDescription>
-            Information about how we use cookies on our website
-          </DialogDescription>
+          <DialogTitle>Cookie Policy</DialogTitle>
         </DialogHeader>
         <div className="space-y-4 text-sm">
           <p>This is the Cookie Policy for Avarok, accessible from avarok.net</p>
