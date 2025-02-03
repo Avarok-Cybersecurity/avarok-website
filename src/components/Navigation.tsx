@@ -30,15 +30,17 @@ export const Navigation = () => {
   };
 
   const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
-    setStateFunction(open);
     if (!open) {
-      // Reset pointer events and overflow
+      // Reset body styles
       document.body.style.pointerEvents = '';
       document.body.style.overflow = '';
-      // Force a reflow to ensure styles are applied
-      document.body.offsetHeight;
+      // Force a reflow
+      void document.body.offsetHeight;
     }
+    setStateFunction(open);
   };
+
+  // ... keep existing code (navigation bar JSX)
 
   return (
     <>

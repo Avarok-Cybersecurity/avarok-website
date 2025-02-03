@@ -115,25 +115,24 @@ export const Contact = () => {
             {isSubmitting ? "Sending..." : "Submit"}
           </Button>
         </form>
-
-        <div className="mt-8 text-center">
-          <div className="glass-card p-4 rounded-lg inline-block mx-auto bg-white/20 backdrop-blur-md">
-            <p className="text-white/90 font-medium text-lg">251 Little Falls Drive</p>
-            <p className="text-white/90 font-medium text-lg">Wilmington, DE, 19808</p>
-            <a href="mailto:contact@avarok.net" className="text-[#9b87f5] hover:text-[#9b87f5]/80 font-medium text-lg transition-colors">
-              contact@avarok.net
-            </a>
-          </div>
-        </div>
       </div>
 
       <div className="relative bg-[#6D52D8] py-6">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center">
-            <a href="https://www.linkedin.com/company/avarok/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/80 transition-colors">
-              <Linkedin className="w-6 h-6" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
+          <div className="flex flex-col md:flex-row items-center justify-between text-white">
+            <div className="flex items-center space-x-6 mb-4 md:mb-0">
+              <a href="https://www.linkedin.com/company/avarok/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/80 transition-colors">
+                <Linkedin className="w-6 h-6" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+              <div className="text-white/90 font-medium">
+                <span className="mr-2">251 Little Falls Drive, Wilmington, DE, 19808</span>
+                <span className="mx-2">|</span>
+                <a href="mailto:contact@avarok.net" className="text-white hover:text-white/80 transition-colors">
+                  contact@avarok.net
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
