@@ -21,7 +21,7 @@ const CookiePolicyPage = () => {
               </Link>
             </Button>
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Cookie Policy for Avarok</h1>
-          <p>This is the Cookie Policy for Avarok, accessible from avarok.net</p>
+            <p>This is the Cookie Policy for Avarok, accessible from avarok.net</p>
           <h3 className="text-lg font-semibold">What Are Cookies</h3>
           <p>As is common practice with almost all professional websites this site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience. This page describes what information they gather, how we use it and why we sometimes need to store these cookies. We will also share how you can prevent these cookies from being stored however this may downgrade or 'break' certain elements of the sites functionality.</p>
           <h3 className="text-lg font-semibold">How We Use Cookies</h3>
@@ -52,7 +52,6 @@ const CookiePolicyPage = () => {
           <p>For more general information on cookies, please read "Cookies" article from the Privacy Policy Generator.</p>
           <p>However if you are still looking for more information then you can contact us through one of our preferred contact methods:</p>
           <p>Email: contact@avarok.net</p>
-        </div>
           </div>
         </div>
       </div>
