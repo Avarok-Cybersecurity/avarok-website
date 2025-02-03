@@ -175,7 +175,16 @@ export const Navigation = () => {
         )}
       </nav>
 
-      <Dialog open={isCookiePolicyOpen} onOpenChange={setIsCookiePolicyOpen}>
+      <Dialog 
+        open={isCookiePolicyOpen} 
+        onOpenChange={(open) => {
+          setIsCookiePolicyOpen(open);
+          // Ensure body is unlocked when dialog closes
+          if (!open) {
+            document.body.style.pointerEvents = 'auto';
+          }
+        }}
+      >
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Cookie Policy for Avarok</DialogTitle>
@@ -216,7 +225,15 @@ export const Navigation = () => {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isAcceptableUseOpen} onOpenChange={setIsAcceptableUseOpen}>
+      <Dialog 
+        open={isAcceptableUseOpen} 
+        onOpenChange={(open) => {
+          setIsAcceptableUseOpen(open);
+          if (!open) {
+            document.body.style.pointerEvents = 'auto';
+          }
+        }}
+      >
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Acceptable Use Policy</DialogTitle>
@@ -290,7 +307,15 @@ export const Navigation = () => {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isPrivacyPolicyOpen} onOpenChange={setIsPrivacyPolicyOpen}>
+      <Dialog 
+        open={isPrivacyPolicyOpen} 
+        onOpenChange={(open) => {
+          setIsPrivacyPolicyOpen(open);
+          if (!open) {
+            document.body.style.pointerEvents = 'auto';
+          }
+        }}
+      >
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Privacy Notice</DialogTitle>
@@ -638,11 +663,12 @@ export const Navigation = () => {
       </Dialog>
 
       <div 
-        className="fixed bottom-0 left-0 w-full h-[300px] z-[-1]"
+        className="fixed bottom-0 left-0 w-full h-screen z-[-1]"
         style={{
           backgroundImage: 'url("/lovable-uploads/ea981cab-aac9-46fa-943a-ee45b534cdb2.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
         }}
       />
     </>
