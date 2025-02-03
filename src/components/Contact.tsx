@@ -6,6 +6,11 @@ import { useToast } from "@/components/ui/use-toast";
 import { Linkedin } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
+// These are public keys, safe to expose in frontend code
+const EMAILJS_SERVICE_ID = "service_2qw4kxl";
+const EMAILJS_TEMPLATE_ID = "template_8dqm0wp";
+const EMAILJS_PUBLIC_KEY = "user_K3CE8MvwJBRzZhwuJLGJ7";
+
 export const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,21 +21,6 @@ export const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    const serviceId = process.env.EMAILJS_SERVICE_ID;
-    const templateId = process.env.EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      console.error('EmailJS environment variables are not set');
-      toast({
-        title: "Configuration Error",
-        description: "Email service is not properly configured.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
 
     try {
       const templateParams = {
@@ -41,10 +31,10 @@ export const Contact = () => {
       };
 
       await emailjs.send(
-        serviceId,
-        templateId,
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         templateParams,
-        publicKey
+        EMAILJS_PUBLIC_KEY
       );
 
       toast({
