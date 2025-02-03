@@ -3,6 +3,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 
 interface TermsProps {
@@ -16,6 +17,9 @@ export const Terms = ({ open, onOpenChange }: TermsProps) => {
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Terms and Conditions</DialogTitle>
+          <DialogDescription>
+            Please review our terms and conditions
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 text-sm">
             <p>Welcome to Avarok Cybersecurity!</p>

@@ -3,6 +3,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 
 interface PrivacyPolicyProps {
@@ -13,9 +14,12 @@ interface PrivacyPolicyProps {
 export const PrivacyPolicy = ({ open, onOpenChange }: PrivacyPolicyProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Privacy Notice</DialogTitle>
+          <DialogTitle>Privacy Policy</DialogTitle>
+          <DialogDescription>
+            Information about how we handle your data
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 text-sm">
             <p className="text-right">Last updated February 10, 2022</p>

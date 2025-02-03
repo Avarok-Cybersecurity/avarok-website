@@ -3,6 +3,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 
 interface AcceptableUseProps {
@@ -16,6 +17,9 @@ export const AcceptableUse = ({ open, onOpenChange }: AcceptableUseProps) => {
       <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Acceptable Use Policy</DialogTitle>
+          <DialogDescription>
+            Please read our acceptable use policy carefully
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 text-sm">
           <p className="font-semibold">Last Modified: March 8 2022</p>
