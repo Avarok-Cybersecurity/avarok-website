@@ -7,9 +7,9 @@ import { Linkedin } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
 // These are public keys, safe to expose in frontend code
-const EMAILJS_SERVICE_ID = "service_2qw4kxl";
-const EMAILJS_TEMPLATE_ID = "template_8dqm0wp";
-const EMAILJS_PUBLIC_KEY = "user_K3CE8MvwJBRzZhwuJLGJ7";
+const EMAILJS_SERVICE_ID = "service_f8jjzfg";
+const EMAILJS_TEMPLATE_ID = "template_rigpoba";
+const EMAILJS_PUBLIC_KEY = "ciBuyXvR_S4IDbXnl";
 
 export const Contact = () => {
   const [name, setName] = useState("");
