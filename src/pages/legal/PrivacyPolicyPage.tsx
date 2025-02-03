@@ -8,7 +8,7 @@ const PrivacyPolicyPage = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="mb-8">
             <Button
               variant="ghost"
@@ -20,37 +20,21 @@ const PrivacyPolicyPage = () => {
                 Back to Home
               </Link>
             </Button>
-            
-            <div className="prose prose-lg max-w-none">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
-              <p className="text-right text-gray-600 mb-8">Last updated February 10, 2022</p>
-              
-              <p className="text-lg leading-relaxed mb-6">
-                Thank you for choosing to be part of our community at Avarok Corp ("Company," "we," "us," or "our"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice or our practices with regard to your personal information, please contact us at contact@avarok.net.
-              </p>
-
-              <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">What This Privacy Notice Covers</h2>
-              
-              <p className="mb-4">This privacy notice describes how we might use your information if you:</p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li>Visit our website at https://avarok.net</li>
-                <li>Engage with us in other related ways ― including any sales, marketing, or events</li>
-              </ul>
-
-              <p className="mb-4">In this privacy notice, if we refer to:</p>
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li>"Website," we are referring to any website of ours that references or links to this policy</li>
-                <li>"Services," we are referring to our Website, and other related services, including any sales, marketing, or events</li>
-              </ul>
-
-              <p className="mb-6">
-                The purpose of this privacy notice is to explain to you in the clearest way possible what information we collect, how we use it, and what rights you have in relation to it. If there are any terms in this privacy notice that you do not agree with, please discontinue use of our Services immediately.
-              </p>
-
-              <p className="text-lg font-medium mb-8">
-                Please read this privacy notice carefully, as it will help you understand what we do with the information that we collect.
-              </p>
-
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+            <p className="text-right">Last updated February 10, 2022</p>
+            <p>Thank you for choosing to be part of our community at Avarok Corp ("Company," "we," "us," or "our"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice or our practices with regard to your personal information, please contact us at contact@avarok.net.</p>
+            <p>This privacy notice describes how we might use your information if you:</p>
+            <ul>
+              <li>Visit our website at https://avarok.net</li>
+              <li>Engage with us in other related ways ― including any sales, marketing, or events</li>
+            </ul>
+            <p>In this privacy notice, if we refer to:</p>
+            <ul>
+              <li>"Website," we are referring to any website of ours that references or links to this policy</li>
+              <li>"Services," we are referring to our Website, and other related services, including any sales, marketing, or events</li>
+            </ul>
+            <p>The purpose of this privacy notice is to explain to you in the clearest way possible what information we collect, how we use it, and what rights you have in relation to it. If there are any terms in this privacy notice that you do not agree with, please discontinue use of our Services immediately.</p>
+            <p>Please read this privacy notice carefully, as it will help you understand what we do with the information that we collect.</p>
             <h3 className="text-lg font-semibold">TABLE OF CONTENTS</h3>
             <ol className="list-decimal pl-6">
               <li>WHAT INFORMATION DO WE COLLECT?</li>
@@ -286,8 +270,6 @@ const PrivacyPolicyPage = () => {
             <p>United States</p>
             <h3 className="text-lg font-semibold">14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h3>
             <p>Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it in some circumstances. To request to review, update, or delete your personal information, please visit: https://www.avarok.net/account/my-account.</p>
-          </div>
-            </div>
           </div>
         </div>
       </div>
