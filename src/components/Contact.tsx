@@ -70,8 +70,10 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="relative">
-      {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/99754b9b-d1e8-46f9-afd-9177f1c99500.png')] bg-cover bg-center bg-no-repeat brightness-[0.15]" />
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/99754b9b-d1e8-46f9-afd-9177f1c99500.png')] bg-cover bg-center bg-no-repeat">
+        <div className="absolute inset-0 bg-[#1A1F2C]/90" /> {/* Dark overlay for better readability */}
+      </div>
       
       {/* Contact Form */}
       <div className="relative py-24 container mx-auto px-4">
@@ -88,7 +90,7 @@ export const Contact = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-white/90 backdrop-blur-sm border-0"
+              className="bg-white/95 backdrop-blur-sm border-0 text-[#1A1F2C]"
               required
             />
             <Input
@@ -96,7 +98,7 @@ export const Contact = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white/90 backdrop-blur-sm border-0"
+              className="bg-white/95 backdrop-blur-sm border-0 text-[#1A1F2C]"
               required
             />
           </div>
@@ -104,7 +106,7 @@ export const Contact = () => {
             placeholder="Type your message here..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="min-h-[150px] bg-white/90 backdrop-blur-sm border-0"
+            className="min-h-[150px] bg-white/95 backdrop-blur-sm border-0 text-[#1A1F2C]"
             required
           />
           <Button 
@@ -116,12 +118,14 @@ export const Contact = () => {
           </Button>
         </form>
 
-        <div className="mt-12 text-center text-white space-y-2">
-          <p>251 Little Falls Drive</p>
-          <p>Wilmington, DE, 19808</p>
-          <a href="mailto:contact@avarok.net" className="text-[#6D52D8] hover:underline">
-            contact@avarok.net
-          </a>
+        <div className="mt-12 text-center space-y-2">
+          <div className="glass-card p-6 rounded-lg max-w-md mx-auto">
+            <p className="text-[#1A1F2C] font-medium">251 Little Falls Drive</p>
+            <p className="text-[#1A1F2C] font-medium">Wilmington, DE, 19808</p>
+            <a href="mailto:contact@avarok.net" className="text-[#6D52D8] hover:text-[#6D52D8]/80 font-medium transition-colors">
+              contact@avarok.net
+            </a>
+          </div>
         </div>
       </div>
 

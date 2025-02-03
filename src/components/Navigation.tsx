@@ -36,6 +36,15 @@ export const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
+    setStateFunction(open);
+    if (!open) {
+      // Reset pointer events and remove any lingering styles
+      document.body.style.pointerEvents = '';
+      document.body.style.overflow = '';
+    }
+  };
+
   return (
     <>
       <nav
@@ -177,13 +186,7 @@ export const Navigation = () => {
 
       <Dialog 
         open={isCookiePolicyOpen} 
-        onOpenChange={(open) => {
-          setIsCookiePolicyOpen(open);
-          // Ensure body is unlocked when dialog closes
-          if (!open) {
-            document.body.style.pointerEvents = 'auto';
-          }
-        }}
+        onOpenChange={(open) => handleDialogChange(open, setIsCookiePolicyOpen)}
       >
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -227,12 +230,7 @@ export const Navigation = () => {
 
       <Dialog 
         open={isAcceptableUseOpen} 
-        onOpenChange={(open) => {
-          setIsAcceptableUseOpen(open);
-          if (!open) {
-            document.body.style.pointerEvents = 'auto';
-          }
-        }}
+        onOpenChange={(open) => handleDialogChange(open, setIsAcceptableUseOpen)}
       >
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -309,12 +307,7 @@ export const Navigation = () => {
 
       <Dialog 
         open={isPrivacyPolicyOpen} 
-        onOpenChange={(open) => {
-          setIsPrivacyPolicyOpen(open);
-          if (!open) {
-            document.body.style.pointerEvents = 'auto';
-          }
-        }}
+        onOpenChange={(open) => handleDialogChange(open, setIsPrivacyPolicyOpen)}
       >
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -574,7 +567,7 @@ export const Navigation = () => {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isTermsOpen} onOpenChange={setIsTermsOpen}>
+      <Dialog open={isTermsOpen} onOpenChange={(open) => handleDialogChange(open, setIsTermsOpen)}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Terms and Conditions</DialogTitle>
