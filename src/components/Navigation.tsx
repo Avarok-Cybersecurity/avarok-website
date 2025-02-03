@@ -33,14 +33,10 @@ export const Navigation = () => {
     console.log('Dialog styles reset');
   };
 
-  const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
-    if (!open) {
-      setStateFunction(false);
-      resetDialogStyles();
-      setTimeout(resetDialogStyles, 100);
-    } else {
-      setStateFunction(true);
-    }
+  const handleDialogChange = (setStateFunction: (value: boolean) => void) => {
+    setStateFunction(false);
+    resetDialogStyles();
+    setTimeout(resetDialogStyles, 100);
   };
 
   const scrollToContact = () => {
@@ -160,19 +156,19 @@ export const Navigation = () => {
 
       <CookiePolicy 
         open={isCookiePolicyOpen} 
-        onOpenChange={(open: boolean) => handleDialogChange(open, setIsCookiePolicyOpen)}
+        onOpenChange={() => handleDialogChange(setIsCookiePolicyOpen)}
       />
       <AcceptableUse 
         open={isAcceptableUseOpen} 
-        onOpenChange={(open: boolean) => handleDialogChange(open, setIsAcceptableUseOpen)}
+        onOpenChange={() => handleDialogChange(setIsAcceptableUseOpen)}
       />
       <PrivacyPolicy 
         open={isPrivacyPolicyOpen} 
-        onOpenChange={(open: boolean) => handleDialogChange(open, setIsPrivacyPolicyOpen)}
+        onOpenChange={() => handleDialogChange(setIsPrivacyPolicyOpen)}
       />
       <Terms 
         open={isTermsOpen} 
-        onOpenChange={(open: boolean) => handleDialogChange(open, setIsTermsOpen)}
+        onOpenChange={() => handleDialogChange(setIsTermsOpen)}
       />
 
       <div 
