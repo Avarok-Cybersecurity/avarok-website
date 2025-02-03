@@ -23,24 +23,40 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Clean up function to reset all dialog-related styles
+  const resetDialogStyles = () => {
+    // Remove any lingering pointer-events styles
+    document.body.style.removeProperty('pointer-events');
+    // Remove any lingering overflow styles
+    document.body.style.removeProperty('overflow');
+    // Remove any aria-hidden attributes that might have been left
+    document.querySelectorAll('[aria-hidden="true"]').forEach((el) => {
+      el.removeAttribute('aria-hidden');
+    });
+    // Force a reflow
+    void document.body.offsetHeight;
+    // Log for debugging
+    console.log('Dialog styles reset');
+  };
+
+  const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
+    if (!open) {
+      // First update the state
+      setStateFunction(false);
+      // Then clean up styles
+      resetDialogStyles();
+      // Add a small delay to ensure cleanup
+      setTimeout(resetDialogStyles, 100);
+    } else {
+      setStateFunction(true);
+    }
+  };
+
   const scrollToContact = () => {
     const contactSection = document.querySelector('#contact');
     contactSection?.scrollIntoView({ behavior: 'smooth' });
     setIsMobileMenuOpen(false);
   };
-
-  const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
-    if (!open) {
-      // Reset body styles
-      document.body.style.pointerEvents = '';
-      document.body.style.overflow = '';
-      // Force a reflow
-      void document.body.offsetHeight;
-    }
-    setStateFunction(open);
-  };
-
-  // ... keep existing code (navigation bar JSX)
 
   return (
     <>
