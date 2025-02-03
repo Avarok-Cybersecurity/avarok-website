@@ -6,6 +6,7 @@ import { AcceptableUse } from "./legal/AcceptableUse";
 import { PrivacyPolicy } from "./legal/PrivacyPolicy";
 import { Terms } from "./legal/Terms";
 import { LegalMenu } from "./legal/LegalMenu";
+import { NavLinks } from "./navigation/NavLinks";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,16 +32,12 @@ export const Navigation = () => {
 
   const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
     if (!open) {
-      // Reset body styles
       document.body.style.pointerEvents = '';
       document.body.style.overflow = '';
-      // Force a reflow
       void document.body.offsetHeight;
     }
     setStateFunction(open);
   };
-
-  // ... keep existing code (navigation bar JSX)
 
   return (
     <>
@@ -61,34 +58,7 @@ export const Navigation = () => {
           </a>
 
           <div className="hidden md:flex items-center space-x-8 mr-8">
-            <Button
-              variant="ghost"
-              className="text-white hover:bg-white/20"
-              asChild
-            >
-              <a href="https://github.com/Avarok-Cybersecurity/Citadel-Protocol" target="_blank" rel="noopener noreferrer">Source Code</a>
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-white hover:bg-white/20"
-              asChild
-            >
-              <a href="#features">Features</a>
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-white hover:bg-white/20"
-              onClick={scrollToContact}
-            >
-              Contact
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-white hover:bg-white/20"
-              asChild
-            >
-              <a href="https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/" target="_blank" rel="noopener noreferrer">Docs</a>
-            </Button>
+            <NavLinks scrollToContact={scrollToContact} />
             <LegalMenu 
               onSelectCookiePolicy={() => setIsCookiePolicyOpen(true)}
               onSelectAcceptableUse={() => setIsAcceptableUseOpen(true)}
@@ -112,34 +82,11 @@ export const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 bg-white/10 backdrop-blur-lg rounded-lg p-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <Button
-                variant="ghost"
-                className="text-white hover:bg-white/20 w-full justify-start"
-                asChild
-              >
-                <a href="https://github.com/Avarok-Cybersecurity/Citadel-Protocol" target="_blank" rel="noopener noreferrer">Source Code</a>
-              </Button>
-              <Button
-                variant="ghost"
-                className="text-white hover:bg-white/20 w-full justify-start"
-                asChild
-              >
-                <a href="#features">Features</a>
-              </Button>
-              <Button
-                variant="ghost"
-                className="text-white hover:bg-white/20 w-full justify-start"
-                onClick={scrollToContact}
-              >
-                Contact
-              </Button>
-              <Button
-                variant="ghost"
-                className="text-white hover:bg-white/20 w-full justify-start"
-                asChild
-              >
-                <a href="https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/" target="_blank" rel="noopener noreferrer">Docs</a>
-              </Button>
+              <NavLinks 
+                scrollToContact={scrollToContact} 
+                isMobile={true} 
+                onMobileMenuClose={() => setIsMobileMenuOpen(false)}
+              />
               <LegalMenu 
                 onSelectCookiePolicy={() => setIsCookiePolicyOpen(true)}
                 onSelectAcceptableUse={() => setIsAcceptableUseOpen(true)}

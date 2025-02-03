@@ -1,5 +1,6 @@
 import { Cpu, Lock, Users, FolderUp, Mail, Zap, KeyRound, Shield, Key, Database, Network, Server } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { FeatureSection } from "./features/FeatureSection";
 
 const topFeatures = [
   {
@@ -115,114 +116,28 @@ export const Features = () => {
         </div>
 
         <div className="space-y-12">
-          <div 
-            ref={topFeaturesAnimation.ref}
-            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
-              topFeaturesAnimation.isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
-          >
-            {topFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 group"
-                style={{
-                  transitionDelay: `${index * 100}ms`
-                }}
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
-                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div 
-            ref={middleFeaturesAnimation.ref}
-            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
-              middleFeaturesAnimation.isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
-          >
-            {middleFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-all duration-300 group"
-                style={{
-                  transitionDelay: `${index * 100}ms`
-                }}
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
-                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div 
-            ref={bottomFeaturesAnimation.ref}
-            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
-              bottomFeaturesAnimation.isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
-          >
-            {bottomFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 group"
-                style={{
-                  transitionDelay: `${index * 100}ms`
-                }}
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
-                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Extra row */}
-          <div 
-            ref={extraFeaturesAnimation.ref}
-            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
-              extraFeaturesAnimation.isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
-          >
-            {extraFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-all duration-300 group"
-                style={{
-                  transitionDelay: `${index * 100}ms`
-                }}
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
-                  <feature.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
+          <FeatureSection 
+            features={topFeatures}
+            animationRef={topFeaturesAnimation.ref}
+            isVisible={topFeaturesAnimation.isVisible}
+          />
+          <FeatureSection 
+            features={middleFeatures}
+            variant="gray"
+            animationRef={middleFeaturesAnimation.ref}
+            isVisible={middleFeaturesAnimation.isVisible}
+          />
+          <FeatureSection 
+            features={bottomFeatures}
+            animationRef={bottomFeaturesAnimation.ref}
+            isVisible={bottomFeaturesAnimation.isVisible}
+          />
+          <FeatureSection 
+            features={extraFeatures}
+            variant="gray"
+            animationRef={extraFeaturesAnimation.ref}
+            isVisible={extraFeaturesAnimation.isVisible}
+          />
         </div>
       </div>
     </section>
