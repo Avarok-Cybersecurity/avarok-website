@@ -14,7 +14,6 @@ export const Navigation = () => {
   const [isAcceptableUseOpen, setIsAcceptableUseOpen] = useState(false);
   const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
-  const [key, setKey] = useState(0); // Add key for forcing re-render
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,23 +31,13 @@ export const Navigation = () => {
 
   const handleDialogChange = (open: boolean, setStateFunction: (value: boolean) => void) => {
     if (!open) {
-      // Store current scroll position
-      const scrollPos = window.scrollY;
-      
-      // Reset body styles and force DOM reload
+      // Reset body styles
       document.body.style.pointerEvents = '';
       document.body.style.overflow = '';
-      
-      setStateFunction(false);
-      setKey(prev => prev + 1); // Force re-render
-      
-      // Restore scroll position after a brief delay
-      setTimeout(() => {
-        window.scrollTo(0, scrollPos);
-      }, 0);
-    } else {
-      setStateFunction(true);
+      // Force a reflow
+      void document.body.offsetHeight;
     }
+    setStateFunction(open);
   };
 
   // ... keep existing code (navigation bar JSX)
@@ -163,22 +152,18 @@ export const Navigation = () => {
       </nav>
 
       <CookiePolicy 
-        key={`cookie-${key}`}
         open={isCookiePolicyOpen} 
         onOpenChange={(open) => handleDialogChange(open, setIsCookiePolicyOpen)}
       />
       <AcceptableUse 
-        key={`acceptable-${key}`}
         open={isAcceptableUseOpen} 
         onOpenChange={(open) => handleDialogChange(open, setIsAcceptableUseOpen)}
       />
       <PrivacyPolicy 
-        key={`privacy-${key}`}
         open={isPrivacyPolicyOpen} 
         onOpenChange={(open) => handleDialogChange(open, setIsPrivacyPolicyOpen)}
       />
       <Terms 
-        key={`terms-${key}`}
         open={isTermsOpen} 
         onOpenChange={(open) => handleDialogChange(open, setIsTermsOpen)}
       />
