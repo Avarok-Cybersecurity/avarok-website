@@ -117,10 +117,10 @@ export const Contact = () => {
         </form>
 
         <div className="mt-8 text-center">
-          <div className="glass-card p-4 rounded-lg inline-block mx-auto bg-white/10 backdrop-blur-sm">
-            <p className="text-white font-medium">251 Little Falls Drive</p>
-            <p className="text-white font-medium">Wilmington, DE, 19808</p>
-            <a href="mailto:contact@avarok.net" className="text-[#6D52D8] hover:text-[#6D52D8]/80 font-medium transition-colors">
+          <div className="glass-card p-4 rounded-lg inline-block mx-auto bg-white/20 backdrop-blur-md">
+            <p className="text-white/90 font-medium text-lg">251 Little Falls Drive</p>
+            <p className="text-white/90 font-medium text-lg">Wilmington, DE, 19808</p>
+            <a href="mailto:contact@avarok.net" className="text-[#9b87f5] hover:text-[#9b87f5]/80 font-medium text-lg transition-colors">
               contact@avarok.net
             </a>
           </div>
