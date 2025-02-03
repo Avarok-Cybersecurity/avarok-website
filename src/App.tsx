@@ -8,19 +8,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Lazy load pages
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const CookiePolicyPage = lazy(() => import("./pages/legal/CookiePolicyPage"));
-const AcceptableUsePage = lazy(() => import("./pages/legal/AcceptableUsePage"));
-const PrivacyPolicyPage = lazy(() => import("./pages/legal/PrivacyPolicyPage"));
-const TermsPage = lazy(() => import("./pages/legal/TermsPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000,
+      staleTime: 60 * 1000, // Cache data for 1 minute
     },
   },
 });
 
+// Loading fallback component
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center">
     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
@@ -36,10 +33,7 @@ const App = () => (
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/legal/cookie-policy" element={<CookiePolicyPage />} />
-            <Route path="/legal/acceptable-use" element={<AcceptableUsePage />} />
-            <Route path="/legal/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/legal/terms" element={<TermsPage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
