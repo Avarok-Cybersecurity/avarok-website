@@ -70,12 +70,10 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="relative">
-      {/* Background Image with Overlay */}
       <div className="absolute inset-0 bg-[url('/lovable-uploads/99754b9b-d1e8-46f9-afd-9177f1c99500.png')] bg-cover bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-[#1A1F2C]/90" /> {/* Dark overlay for better readability */}
+        <div className="absolute inset-0 bg-[#1A1F2C]/90" />
       </div>
       
-      {/* Contact Form */}
       <div className="relative py-24 container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="text-4xl font-bold text-white mb-4 flex items-center justify-center gap-2">
@@ -118,10 +116,10 @@ export const Contact = () => {
           </Button>
         </form>
 
-        <div className="mt-12 text-center space-y-2">
-          <div className="glass-card p-6 rounded-lg max-w-md mx-auto">
-            <p className="text-[#1A1F2C] font-medium">251 Little Falls Drive</p>
-            <p className="text-[#1A1F2C] font-medium">Wilmington, DE, 19808</p>
+        <div className="mt-8 text-center">
+          <div className="glass-card p-4 rounded-lg inline-block mx-auto bg-white/10 backdrop-blur-sm">
+            <p className="text-white font-medium">251 Little Falls Drive</p>
+            <p className="text-white font-medium">Wilmington, DE, 19808</p>
             <a href="mailto:contact@avarok.net" className="text-[#6D52D8] hover:text-[#6D52D8]/80 font-medium transition-colors">
               contact@avarok.net
             </a>
@@ -129,7 +127,6 @@ export const Contact = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="relative bg-[#6D52D8] py-6">
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
