@@ -1,9 +1,10 @@
-import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { AcceptableUse } from "./AcceptableUse";
-import { CookiePolicy } from "./CookiePolicy";
-import { PrivacyPolicy } from "./PrivacyPolicy";
-import { Terms } from "./Terms";
 
 interface LegalMenuProps {
   onSelectCookiePolicy: () => void;
@@ -16,48 +17,29 @@ export const LegalMenu = ({
   onSelectCookiePolicy,
   onSelectAcceptableUse,
   onSelectPrivacyPolicy,
-  onSelectTerms
+  onSelectTerms,
 }: LegalMenuProps) => {
-  const [activeDialog, setActiveDialog] = useState<string | null>(null);
-
-  const closeDialog = () => {
-    setActiveDialog(null);
-    // Reset any lingering styles
-    document.body.style.removeProperty('pointer-events');
-    document.body.style.removeProperty('overflow');
-    console.log('Dialog closed, styles reset');
-  };
-
   return (
-    <div className="flex flex-wrap gap-4 items-center justify-center">
-      <Button
-        variant="link"
-        className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => onSelectTerms()}
-      >
-        Terms
-      </Button>
-      <Button
-        variant="link"
-        className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => onSelectPrivacyPolicy()}
-      >
-        Privacy
-      </Button>
-      <Button
-        variant="link"
-        className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => onSelectCookiePolicy()}
-      >
-        Cookies
-      </Button>
-      <Button
-        variant="link"
-        className="text-sm text-muted-foreground hover:text-primary"
-        onClick={() => onSelectAcceptableUse()}
-      >
-        Acceptable Use
-      </Button>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="text-white hover:bg-white/20">
+          Legal
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56 bg-white/90 backdrop-blur-sm">
+        <DropdownMenuItem onSelect={onSelectCookiePolicy}>
+          Cookie Policy
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={onSelectAcceptableUse}>
+          Acceptable Use Policy
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={onSelectPrivacyPolicy}>
+          Privacy Policy
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={onSelectTerms}>
+          Terms and Conditions
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };

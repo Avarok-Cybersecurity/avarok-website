@@ -7,15 +7,15 @@ import {
 
 interface CookiePolicyProps {
   open: boolean;
-  onOpenChange: () => void;
+  onOpenChange: (open: boolean) => void;
 }
 
 export const CookiePolicy = ({ open, onOpenChange }: CookiePolicyProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Cookie Policy</DialogTitle>
+          <DialogTitle>Cookie Policy for Avarok</DialogTitle>
         </DialogHeader>
         <div className="space-y-4 text-sm">
           <p>This is the Cookie Policy for Avarok, accessible from avarok.net</p>
