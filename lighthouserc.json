@@ -4,10 +4,19 @@
       "staticDistDir": "./site",
       "url": [
         "http://localhost/index.html",
+        "http://localhost/citadel-workspace/index.html",
+        "http://localhost/citadel-protocol/index.html",
+        "http://localhost/citadel-agent/index.html",
+        "http://localhost/synchronized-work/index.html",
+        "http://localhost/atlas-inference/index.html",
+        "http://localhost/certifiedcopy/index.html",
+        "http://localhost/open-source/index.html",
+        "http://localhost/about/index.html",
         "http://localhost/privacy/index.html",
         "http://localhost/terms/index.html",
         "http://localhost/cookie-policy/index.html",
         "http://localhost/acceptable-use/index.html",
+        "http://localhost/offline/index.html",
         "http://localhost/404.html"
       ],
       "numberOfRuns": 3,
@@ -16,12 +25,123 @@
       }
     },
     "assert": {
-      "assertions": {
-        "categories:performance": ["error", { "minScore": 1, "aggregationMethod": "median-run" }],
-        "categories:accessibility": ["error", { "minScore": 1, "aggregationMethod": "median-run" }],
-        "categories:best-practices": ["error", { "minScore": 1, "aggregationMethod": "median-run" }],
-        "categories:seo": ["error", { "minScore": 1, "aggregationMethod": "median-run" }]
-      }
+      "assertMatrix": [
+        {
+          "matchingUrlPattern": "^(?!.*/offline/).*$",
+          "assertions": {
+            "categories:performance": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "categories:accessibility": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "categories:best-practices": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "categories:seo": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ]
+          }
+        },
+        {
+          "matchingUrlPattern": "/offline/",
+          "assertions": {
+            "categories:performance": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "categories:accessibility": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "categories:best-practices": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "document-title": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "meta-description": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "http-status-code": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "link-text": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "crawlable-anchors": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "robots-txt": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "hreflang": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ],
+            "canonical": [
+              "error",
+              {
+                "minScore": 1,
+                "aggregationMethod": "median-run"
+              }
+            ]
+          }
+        }
+      ]
     },
     "upload": {
       "target": "filesystem",
