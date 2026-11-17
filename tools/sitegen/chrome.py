@@ -87,8 +87,8 @@ def product_card(p: dict) -> str:
         f'<p class="kind">{e(p["kind"])}</p><h3>{e(p["name"])}</h3><p>{e(p["oneLiner"])}</p>'
         f'<p class="meta">Licence: {e(p["license"])}</p>'
         '<div class="actions">'
-        f'<a class="btn btn-primary" href="{p["site"]}">{e(p["cta"])}</a>'
-        f'<a class="btn btn-ghost" href="{p["path"]}">About {e(p["name"])}</a></div></li>')
+        f'<a class="btn btn-ghost" href="{p["ctaHref"]}">{e(p["cta"])}</a>'
+        f'<a class="more" href="{p["path"]}">About {e(p["name"])}</a></div></li>')
 
 
 def product_cards(data: dict) -> str:

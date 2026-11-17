@@ -21,7 +21,7 @@ def hero(p: dict, h1: str) -> str:
         f'<p class="eyebrow">{e(p["kind"])}</p><h1>{e(h1)}</h1>'
         f'<p class="lede">{e(p["description"])}</p>'
         '<div class="actions">'
-        f'<a class="btn btn-primary" href="{p["site"]}">{e(p["cta"])}</a>'
+        f'<a class="btn btn-primary" href="{p["ctaHref"]}">{e(p["cta"])}</a>'
         f'<a class="btn btn-ghost" href="{p["repo"]}">{e(p["name"])} source code</a></div></header>')
 
 
@@ -38,7 +38,7 @@ def facts(data: dict, p: dict) -> str:
 def cta(p: dict) -> str:
     return (f'<section class="card cta-box acc-{p["id"]}" aria-label="Get {e(p["name"])}">'
             f'<p><strong>{e(p["name"])}</strong>: {e(p["oneLiner"])}</p>'
-            f'<a class="btn btn-primary" href="{p["site"]}">{e(p["cta"])}</a></section>')
+            f'<a class="btn btn-ghost" href="{p["ctaHref"]}">{e(p["cta"])}</a></section>')
 
 
 def fill(data: dict, meta: dict, body: str) -> str:
