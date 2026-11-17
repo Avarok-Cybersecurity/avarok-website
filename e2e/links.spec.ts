@@ -30,7 +30,20 @@ async function collect(request: APIRequestContext): Promise<{ internal: Set<stri
   return { internal, external };
 }
 
+// A github.com/<owner>/<repo>/blob/<ref>/<path> link is checked against GitHub's contents API
+// instead of the rendered page: the API proves the same fact (the file exists in a public
+// repository: it answers 404 for a private one, unauthenticated) without asking GitHub to
+// render it, and GitHub answers anonymous renders of large files with a 503 "Unicorn" page
+// under load while the repository and the file are fine.
+const BLOB = /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/;
+
 async function resolves(request: APIRequestContext, browser: Browser, url: string): Promise<string> {
+  const blob = url.match(BLOB);
+  if (blob) {
+    const [, owner, repo, ref, path] = blob;
+    const api = await request.get(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${ref}`, { headers: { 'user-agent': 'avarok-website-linkcheck', accept: 'application/vnd.github+json' } });
+    return api.status() === 200 ? '200 (contents API)' : `contents API ${api.status()}`;
+  }
   const r = await request.get(url, { headers: { 'user-agent': UA, accept: 'text/html,*/*' }, maxRedirects: 10, timeout: 30_000 });
   if (r.status() < 400) return `${r.status()}`;
   if (!BOT_WALLED.has(r.status())) return `HTTP ${r.status()}`;
@@ -68,6 +81,6 @@ test('every family, founder, source and download link resolves live', async ({ r
   }));
   expect(results.length).toBe(external.size);
   console.log(results.map(([url, , status]) => `${status.padEnd(14)} ${url}`).sort().join('\n'));
-  const broken = results.filter(([, , status]) => !/^\d{3}( \(browser\))?$/.test(status) || Number(status.slice(0, 3)) >= 400);
+  const broken = results.filter(([, , status]) => !/^\d{3}( \((browser|contents API)\))?$/.test(status) || Number(status.slice(0, 3)) >= 400);
   expect(broken.map(([url, from, status]) => `${url} (on ${from}): ${status}`)).toEqual([]);
 });
