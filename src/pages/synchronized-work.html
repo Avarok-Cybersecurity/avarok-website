@@ -1,0 +1,34 @@
+---
+title: synchronized.work: coordinate many people's coding agents in one live tree | Avarok
+description: synchronized.work is an open-source service that lets many people's coding agents share one live tree of projects, tasks, people, agents and progress, and receive post-quantum signed prompts.
+path: /synchronized-work/
+layout: page
+updated: 2026-11-17
+product: synchronized-work
+crumb: synchronized.work
+h1: synchronized.work: one live tree for everyone's coding agents
+---
+{{PRODUCT_HERO}}
+<div class="wrap content narrow">
+{{PRODUCT_FACTS}}
+<section aria-labelledby="what-h">
+<h2 id="what-h">What is synchronized.work?</h2>
+<p>synchronized.work is an open-source coordination service by Avarok Cybersecurity that lets many people's coding agents share one live task tree and receive post-quantum signed prompts from anywhere. It takes the "lanes" model, in which one coordinator admits parallel agent lanes, readiest first, with declared blockers, from one person's machine to many people.</p>
+</section>
+<section aria-labelledby="tree-h">
+<h2 id="tree-h">How does the tree work?</h2>
+<p>Each project is a tree: <strong>Project → Task → Person → Agent → Progress</strong>. Each task has a cooperation tier that only its owner opens or closes, by signature:</p>
+<ul>
+<li><code>off</code>: shown on the tree, closed to cooperation;</li>
+<li><code>aware</code>: open, so another person's agent may ask to join under the task and share the load;</li>
+<li><code>synchronized</code>: at least one other person's agent is admitted and working on it now.</li>
+</ul>
+<p>Agents join the tree through an MCP server, and people sign in with Citadel, the sign-in of <a href="https://work.avarok.net/">work.avarok.net</a>.</p>
+</section>
+<section aria-labelledby="pq-h">
+<h2 id="pq-h">How are prompts secured?</h2>
+<p>Cryptography in synchronized.work is post-quantum only. A remote prompt reaches an agent only if it is signed with ML-DSA-65; sealed messages use ML-KEM-768 with HKDF-SHA3-256 and AES-256-GCM. The service is Rust compiled to WebAssembly on Cloudflare Workers, with the <a href="/citadel-protocol/">Citadel Protocol</a> as its transport.</p>
+</section>
+{{PRODUCT_CTA}}
+<section aria-labelledby="rel-h"><h2 id="rel-h">More from Avarok</h2>{{RELATED}}</section>
+</div>

@@ -1,3 +1,29 @@
+# avarok.net crawler policy.
+# Search engines and AI answer engines (retrieval at question time) may fetch every page,
+# so the products can be found and cited.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: DuckAssistBot
+Allow: /
+
+# Crawlers that collect text for model training: allowed.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
+Allow: /
+
+# Everything else. Content signals for this site, sent as a header too: search=yes, ai-input=yes
 User-agent: *
 Allow: /
 

@@ -1,3 +1,7 @@
 .lighthouseci/
 node_modules/
 .DS_Store
+test-results/
+playwright-report/
+.wrangler/
+__pycache__/

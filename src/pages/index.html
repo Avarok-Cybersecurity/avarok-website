@@ -1,72 +1,75 @@
 ---
-title: Avarok - Quantum-Resistant Cryptography
-description: All-in-one quantum-resistant cryptography, authentication, P2P, file-sharing, and patent-pending messaging SDK
+title: Avarok Cybersecurity: post-quantum security and infrastructure in Rust
+description: Avarok Cybersecurity builds post-quantum security software in Rust: the open-source Citadel Protocol SDK, Citadel Workspace, synchronized.work, Atlas Inference and CertifiedCopy.
 path: /
 layout: home
+updated: 2026-11-17
 ---
-<main>
-<section class="hero">
-<div class="hero-inner">
-<h1 class="fade">Cutting Edge<br>Cybersecurity For Future<br>Web Applications</h1>
-<div class="hero-sub">
-<p class="pill fade d2">All-in-one quantum-resistant cryptography, authentication, P2P, file-sharing, and patent-pending messaging SDK</p>
-<p class="tag fade d4">With advanced multi-layered cryptography and ratcheting</p>
+<div class="hero-band">
+<section class="wrap hero" aria-labelledby="hero-h">
+<div>
+<p class="eyebrow">Avarok Cybersecurity</p>
+<h1 id="hero-h">Post-quantum security and infrastructure, <span class="accent">built in Rust</span>.</h1>
+<p class="lede">Avarok builds the Citadel Protocol, an open-source SDK for post-quantum, end-to-end encrypted networking, and a family of open-source products: a peer-to-peer workspace, the local agent that powers it, coordination for coding agents, an LLM inference engine and private message export.</p>
+<div class="actions"><a class="btn btn-primary" href="#products">Explore the products</a><a class="btn btn-ghost" href="/citadel-protocol/">About the Citadel Protocol</a></div>
 </div>
-<div class="cta fade d6"><a class="btn-cta" href="https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/" target="_blank" rel="noopener noreferrer">Explore SDK</a></div>
+<nav class="card" aria-label="The Avarok family">{{FAMILY}}</nav>
+</section>
+</div>
+
+<section class="section alt" aria-labelledby="what-h">
+<div class="wrap">
+<div class="section-head">
+<h2 id="what-h">What is Avarok Cybersecurity?</h2>
+<p>Avarok Cybersecurity is a software company that builds post-quantum security and infrastructure in Rust. Its foundation is the <a href="/citadel-protocol/">Citadel Protocol</a>, an open-source networking SDK whose key exchange uses post-quantum key encapsulation (Kyber by default, with NTRU as an option) under a multi-layered ratchet, and whose session-layer design is covered by US patent 12224993. Every product in the family publishes its source on GitHub.</p>
+</div>
+<ul class="grid two">
+<li class="card pillar"><h3>Post-quantum by default</h3><p>Citadel sessions agree keys through post-quantum KEMs and re-key per message, with a perfect-forward-secrecy mode and a best-effort mode for throughput.</p></li>
+<li class="card pillar"><h3>Rust from the protocol up</h3><p>The Citadel Protocol is written in safe Rust on Tokio; Atlas is pure Rust and CUDA; LatticeDB and Citadel Docs are pure Rust compiled to WebAssembly.</p></li>
+<li class="card pillar"><h3>Direct between people</h3><p>Built-in NAT traversal lets Citadel applications connect peers directly, so Citadel Workspace carries messages, files and calls over an encrypted peer channel instead of through a media server.</p></li>
+<li class="card pillar"><h3>Open source</h3><p>The SDK is MIT or Apache-2.0; the applications are AGPL-3.0, MIT or Apache-2.0. See <a href="/open-source/">every open-source project</a>.</p></li>
+</ul>
 </div>
 </section>
-<section id="features" class="features">
-<div class="container">
-<div class="features-head reveal">
-<span class="badge">Features</span>
-<h2>Everything you need to succeed</h2>
-<p>Powerful solutions to enable digital security and sovereignty for people, businesses, and government</p>
+
+<section id="products" class="section" aria-labelledby="products-h">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">Products</p>
+<h2 id="products-h">Six products, one family</h2>
+<p>Each card links to the product's own site and to a page here with the details: what it does, how it is built, its licence and where its source lives.</p>
 </div>
-<div class="groups">
-<div class="grid reveal">
-<div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div><h3>Rust/Tokio</h3><p>SDK built using 100% safe rust for maximum security and performance. Powered using the Tokio asynchronous runtime</p></div>
-<div class="card" data-d="1"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Extreme Security</h3><p>Post-quantum key exchange, multi-layered ratcheting, per-message adjustable multi-layered cryptography, and many other adjustable options</p></div>
-<div class="card" data-d="2"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>P2P</h3><p>Includes built-in NAT traversal for enabling the use of peer to peer applications</p></div>
+{{CARDS}}
 </div>
-<div class="grid reveal">
-<div class="card gray"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/><path d="M12 10v6"/><path d="m9 13 3-3 3 3"/></svg></div><h3>File Transfer Scrambling</h3><p>All files transferred between client/server or peer-to-peer are scrambled with an independent key for higher security</p></div>
-<div class="card gray" data-d="1"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><h3>Perfect Forward Secrecy + Best Effort Mode</h3><p>Each session can be configured to enforce perfect forward secrecy for maximum security, or best-effort mode for maximum throughput</p></div>
-<div class="card gray" data-d="2"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div><h3>Hybrid Cryptography</h3><p>Each session by default uses TLS or QUIC as a base layer coupled with the post-quantum Lusna Protocol for quantum resistance</p></div>
-</div>
-<div class="grid reveal">
-<div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg></div><h3>Argon2id Password Hashing</h3><p>A built-in parameter autotuner and authenticator allows creating secure authenticated sessions seemlessly</p></div>
-<div class="card" data-d="1"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div><h3>Passwordless Authentication</h3><p>Configure sessions to use passwordless authentication for connections</p></div>
-<div class="card" data-d="2"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg></div><h3>Credentialed Authentication</h3><p>Configure sessions to use credentials for added security</p></div>
-</div>
-<div class="grid reveal">
-<div class="card gray"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg></div><h3>Single/Multi-Threaded Modes</h3><p>Easily change between single and multi-threaded protocol event loops at compile-time to fine-tune to the requirements of your application</p></div>
-<div class="card gray" data-d="1"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></div><h3>Scalable Backends</h3><p>Configure your application to use a MySQL, PostgreSQL, SQLite, or Redis backends to scale your application across a network</p></div>
-<div class="card gray" data-d="2"><div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg></div><h3>Distributed Systems</h3><p>Build distributed systems with ease using our battle-tested networking and synchronization primitives</p></div>
-</div>
+</section>
+
+<section class="section alt" aria-labelledby="founder-h">
+<div class="wrap founder">
+<div class="monogram" aria-hidden="true">TB</div>
+<div class="narrow">
+<p class="eyebrow">Founder</p>
+<h2 id="founder-h">Founded by Thomas Braun</h2>
+<p>Avarok was founded by Thomas Braun, a Rust engineer who created the Citadel Protocol and holds US patent 12224993 for its Recursive Cryptography Protocol. He also founded Atlas Cybernetics, the company behind the Atlas Inference Engine.</p>
+<div class="actions"><a class="btn btn-primary" href="https://thomaspbraun.com">Thomas Braun's portfolio at thomaspbraun.com</a><a class="btn btn-ghost" href="/about/">About Avarok</a></div>
 </div>
 </div>
 </section>
-<section id="contact" class="contact">
-<div class="contact-body container">
-<h2><span class="dot" aria-hidden="true"></span>Contact</h2>
+
+<section id="contact" class="section" aria-labelledby="contact-h">
+<div class="wrap">
+<div class="section-head">
+<h2 id="contact-h">Contact Avarok</h2>
+<p>Questions about the Citadel Protocol, licensing or any of the products: write to us here or at <a href="mailto:contact@avarok.net">contact@avarok.net</a>.</p>
+</div>
 <form class="contact-form" id="contact-form" action="mailto:contact@avarok.net" method="post" enctype="text/plain">
 <div class="row">
-<label class="sr-only" for="cf-name">Name</label>
-<input id="cf-name" name="name" type="text" placeholder="Name" autocomplete="name" required>
-<label class="sr-only" for="cf-email">Email</label>
-<input id="cf-email" name="email" type="email" placeholder="Email" autocomplete="email" required>
+<div><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
+<div><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
 </div>
-<label class="sr-only" for="cf-message">Message</label>
-<textarea id="cf-message" name="message" placeholder="Type your message here..." required></textarea>
-<button type="submit" class="btn-submit">Submit</button>
-<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+<div><label for="cf-message">Message</label><textarea id="cf-message" name="message" required></textarea></div>
+<div class="actions"><button type="submit" class="btn btn-primary">Send message</button></div>
+<p class="form-status" id="form-status" role="status"></p>
+<p class="form-status form-error" id="form-error" role="alert"></p>
 </form>
 </div>
-<footer class="footer">
-<div class="container footer-inner">
-<a class="li" href="https://www.linkedin.com/company/avarok/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg><span class="sr-only">LinkedIn</span></a>
-<p class="addr"><span>251 Little Falls Drive, Wilmington, DE, 19808</span><span class="sep" aria-hidden="true">|</span><a href="mailto:contact@avarok.net">contact@avarok.net</a></p>
-</div>
-</footer>
 </section>
-</main>

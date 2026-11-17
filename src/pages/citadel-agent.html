@@ -1,0 +1,42 @@
+---
+title: Citadel Agent (citadeld): download the local Citadel daemon | Avarok
+description: Download the Citadel Agent for macOS, Linux or Windows: the local daemon that manages Citadel Protocol connections for Citadel Workspace and other apps. Every download ships with a SHA-256 checksum and a GitHub build attestation.
+path: /citadel-agent/
+layout: page
+updated: 2026-11-17
+product: citadel-agent
+crumb: Citadel Agent
+h1: Citadel Agent: the local daemon behind Citadel apps
+---
+{{PRODUCT_HERO}}
+<div class="wrap content narrow">
+{{PRODUCT_FACTS}}
+<section aria-labelledby="what-h">
+<h2 id="what-h">What does the Citadel Agent do?</h2>
+<p>The Citadel Agent (<code>citadeld</code>) is a local daemon that manages the lifecycle of secure connections for applications on the same machine. It sits between those apps (command-line, desktop or web) and the <a href="/citadel-protocol/">Citadel Protocol SDK</a>, and exposes a lightweight interface over local sockets and WebSocket. Apps send it requests; the agent holds the encrypted tunnels to servers and the peer-to-peer channels to other people.</p>
+<p>Because one agent multiplexes every session on the machine, several local apps can use the Citadel Protocol at once without each embedding the SDK or managing connection state. <a href="/citadel-workspace/">Citadel Workspace</a> runs on it: the web app connects to the agent over localhost only.</p>
+</section>
+<section aria-labelledby="downloads">
+<h2 id="downloads">Download the Citadel Agent</h2>
+<p>These links always fetch the newest release from GitHub.</p>
+<dl class="facts">
+<dt>macOS</dt><dd><a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/Citadel-Agent.dmg">Citadel Agent for macOS (.dmg)</a>, or the archives for <a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/citadel-agent-macos-arm64.tar.gz">Apple silicon</a> and <a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/citadel-agent-macos-x64.tar.gz">Intel Macs</a></dd>
+<dt>Windows</dt><dd><a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/Citadel-Agent-x64.msi">Citadel Agent for Windows (.msi installer)</a>, or the <a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/citadel-agent-windows-x64.zip">.zip archive</a></dd>
+<dt>Linux</dt><dd><a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/citadel-agent-linux-x64.deb">Citadel Agent for Debian and Ubuntu (.deb)</a>, the <a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/Citadel-Agent-x86_64.AppImage">AppImage</a>, or the <a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest/download/citadel-agent-linux-x64.tar.gz">.tar.gz archive</a></dd>
+<dt>All releases</dt><dd><a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest">Citadel Agent release notes and every file on GitHub</a></dd>
+</dl>
+</section>
+<section aria-labelledby="verify-h">
+<h2 id="verify-h">How do I verify a download?</h2>
+<p>Each release is built and attested by GitHub Actions. With the <a href="https://cli.github.com/">GitHub CLI</a> installed, check that a file is the one the release workflow built:</p>
+<pre><code>gh attestation verify Citadel-Agent.dmg <span class="nb">--repo</span> Avarok-Cybersecurity/citadel-workspace</code></pre>
+<p>Every file is also published beside a <code>.sha256</code> checksum. Compute the file's SHA-256 and compare it with that file on the <a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest">release page</a>:</p>
+<dl class="facts">
+<dt>macOS</dt><dd><code>shasum -a 256 Citadel-Agent.dmg</code></dd>
+<dt>Linux</dt><dd><code>sha256sum citadel-agent-linux-x64.deb</code></dd>
+<dt>Windows (PowerShell)</dt><dd><code>Get-FileHash -Algorithm SHA256 Citadel-Agent-x64.msi</code></dd>
+</dl>
+</section>
+{{PRODUCT_CTA}}
+<section aria-labelledby="rel-h"><h2 id="rel-h">More from Avarok</h2>{{RELATED}}</section>
+</div>

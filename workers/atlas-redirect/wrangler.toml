@@ -1,0 +1,20 @@
+# atlas.avarok.net: a Worker that answers every request with a permanent redirect to the Atlas
+# engine page. Deployed only by .github/workflows/deploy.yml on a push to main; a pull request
+# only builds it (`wrangler deploy --dry-run`).
+name = "atlas-avarok-redirect"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = false
+preview_urls = false
+
+# A custom domain, not a zone route: atlas.avarok.net has no DNS record, and a custom domain makes
+# Cloudflare create and own the record and the certificate (synchronized.work's wrangler.toml
+# learned this the hard way). Creating it fails if a CNAME already exists at that name.
+routes = [
+  { pattern = "atlas.avarok.net", custom_domain = true },
+]
+
+# Both are required; the Worker answers 500 and logs the field rather than guess (src/index.js).
+[vars]
+REDIRECT_TARGET = "https://atlasinference.io/engine"
+REDIRECT_STATUS = "301"

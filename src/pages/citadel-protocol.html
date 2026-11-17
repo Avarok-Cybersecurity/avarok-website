@@ -1,0 +1,51 @@
+---
+title: Citadel Protocol SDK (citadel_sdk): post-quantum networking for Rust | Avarok
+description: The Citadel Protocol is an open-source Rust SDK for post-quantum, end-to-end encrypted client-server and peer-to-peer networking, with NAT traversal, multi-layered ratcheting and an encrypted virtual filesystem.
+path: /citadel-protocol/
+layout: page
+updated: 2026-11-17
+product: citadel-protocol
+crumb: Citadel Protocol SDK
+h1: Citadel Protocol: a post-quantum networking SDK for Rust
+---
+{{PRODUCT_HERO}}
+<div class="wrap content narrow">
+{{PRODUCT_FACTS}}
+<section aria-labelledby="what-h">
+<h2 id="what-h">What is the Citadel Protocol?</h2>
+<p>The Citadel Protocol is a post-quantum secure networking protocol, published as the Rust crate <code>citadel_sdk</code>, for building client-server and peer-to-peer applications. It is written in 100% safe Rust on the Tokio runtime, includes NAT traversal, and keeps a low memory footprint. It is dual-licensed MIT or Apache-2.0, and its core design is covered by US patent 12224993 while remaining free and open source.</p>
+</section>
+<section aria-labelledby="sec-h">
+<h2 id="sec-h">Which post-quantum algorithms does it use?</h2>
+<ul>
+<li><strong>Key encapsulation:</strong> Kyber (the default, NIST-standardised) and NTRU (sntrup761).</li>
+<li><strong>Ratcheting:</strong> a multi-layered key exchange and a 3D matrix ratchet, with per-message re-keying.</li>
+<li><strong>Encryption:</strong> AES-256-GCM, ChaCha20-Poly1305, Ascon-80pq, and Kyber "scramcryption", layered and configurable per session.</li>
+<li><strong>Security modes:</strong> a true perfect-forward-secrecy mode, and a best-effort mode for high throughput.</li>
+<li><strong>Primitives:</strong> drawn from the Open Quantum Safe and PQClean projects; TLS or QUIC can run underneath as a hybrid base layer.</li>
+</ul>
+</section>
+<section aria-labelledby="net-h">
+<h2 id="net-h">What networking does the SDK provide?</h2>
+<ul>
+<li>Client-server and peer-to-peer sessions, with built-in NAT traversal (STUN and TURN), so no port forwarding is needed.</li>
+<li>TCP, TLS (the default) and QUIC transports.</li>
+<li>A remote encrypted virtual filesystem (RE-VFS) for secret remote file storage, and scrambled file transfer.</li>
+<li>Device-dependent and credential-based authentication.</li>
+<li>Single- or multi-threaded event loops, chosen at compile time.</li>
+<li>Back ends on the local filesystem, Redis, MySQL, PostgreSQL or SQLite.</li>
+</ul>
+</section>
+<section aria-labelledby="install-h">
+<h2 id="install-h">How do I install citadel_sdk?</h2>
+<p>Add the crate to a Rust project (it needs OpenSSL and Clang to build):</p>
+<pre><code>cargo add citadel_sdk</code></pre>
+<p>Then read the <a href="https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/">Citadel Protocol documentation</a>, the <a href="https://docs.rs/citadel_sdk/0.13.0/citadel_sdk/">citadel_sdk API reference on docs.rs</a>, and the <a href="https://github.com/Avarok-Cybersecurity/citadel-protocol-examples">Citadel Protocol example applications</a>. Releases are published on <a href="https://crates.io/crates/citadel_sdk">crates.io as citadel_sdk</a>.</p>
+</section>
+<section aria-labelledby="uses-h">
+<h2 id="uses-h">What is built on it?</h2>
+<p><a href="/citadel-workspace/">Citadel Workspace</a> carries its messages, files and calls over Citadel peer channels; the <a href="/citadel-agent/">Citadel Agent</a> hosts the SDK for local apps; and <a href="/synchronized-work/">synchronized.work</a> uses the Citadel protocol as its transport and Sign in with Citadel for accounts.</p>
+</section>
+{{PRODUCT_CTA}}
+<section aria-labelledby="rel-h"><h2 id="rel-h">More from Avarok</h2>{{RELATED}}</section>
+</div>

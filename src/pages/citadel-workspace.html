@@ -1,0 +1,46 @@
+---
+title: Citadel Workspace: post-quantum, peer-to-peer team collaboration | Avarok
+description: Citadel Workspace is a collaborative workspace where messages, calls, files and live documents are end-to-end encrypted with post-quantum cryptography and travel directly between people.
+path: /citadel-workspace/
+layout: page
+updated: 2026-11-17
+product: citadel-workspace
+crumb: Citadel Workspace
+h1: Citadel Workspace: post-quantum, peer-to-peer collaboration
+---
+{{PRODUCT_HERO}}
+<div class="wrap content narrow">
+{{PRODUCT_FACTS}}
+<section aria-labelledby="does-h">
+<h2 id="does-h">What does Citadel Workspace do?</h2>
+<p>Citadel Workspace gives a team messaging, calls, file sharing and shared documents in one place, with every message, file and call encrypted end to end using post-quantum cryptography. Traffic travels directly between people rather than through a server that could read it.</p>
+<ul>
+<li><strong>Messaging:</strong> direct and group conversations; messages sent while someone is offline are held and delivered when they return.</li>
+<li><strong>Audio and video calls:</strong> one-to-one and group, encoded in the browser and carried over the same encrypted peer channel, with no SFU, no TURN server and no third party in the media path.</li>
+<li><strong>File transfer:</strong> files go straight to the people in the conversation, without being uploaded to storage in between.</li>
+<li><strong>Live documents:</strong> several people editing at once, with changes appearing as they type.</li>
+<li><strong>Workspaces, offices and rooms:</strong> a structure teams can map onto how they work, with permissions that inherit downward.</li>
+<li><strong>Installable:</strong> a PWA that installs to the desktop or home screen.</li>
+</ul>
+</section>
+<section aria-labelledby="built-h">
+<h2 id="built-h">How is Citadel Workspace built?</h2>
+<p>The web app (React and WebAssembly) talks over a localhost-only WebSocket to the <a href="/citadel-agent/">Citadel Agent</a>, a local service on the person's own machine that owns their <a href="/citadel-protocol/">Citadel Protocol</a> connections:</p>
+<ul>
+<li>reliable Citadel peer-to-peer channels for chat, signalling and file transfer;</li>
+<li>datagram peer-to-peer channels for audio and video frames;</li>
+<li>a client-to-server connection to the workspace server, which stores structure and membership and never sees message contents, file contents or media.</li>
+</ul>
+<p>Media is encoded and decoded in the browser with WebCodecs, so calls use the platform's hardware encoders; the protocol carries opaque encrypted frames.</p>
+</section>
+<section aria-labelledby="start-h">
+<h2 id="start-h">How do I start using Citadel Workspace?</h2>
+<ol>
+<li><a href="/citadel-agent/">Download and run the Citadel Agent</a> for macOS, Linux or Windows.</li>
+<li>Open <a href="https://work.avarok.net/">work.avarok.net</a> and create a workspace, or sign in to one you belong to.</li>
+<li>Install it as an app from the browser if you want it on your desktop or home screen.</li>
+</ol>
+</section>
+{{PRODUCT_CTA}}
+<section aria-labelledby="rel-h"><h2 id="rel-h">More from Avarok</h2>{{RELATED}}</section>
+</div>
