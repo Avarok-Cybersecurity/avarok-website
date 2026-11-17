@@ -29,7 +29,7 @@ h1: Citadel Agent: the local daemon behind Citadel apps
 <section aria-labelledby="verify-h">
 <h2 id="verify-h">How do I verify a download?</h2>
 <p>Each release is built and attested by GitHub Actions. With the <a href="https://cli.github.com/">GitHub CLI</a> installed, check that a file is the one the release workflow built:</p>
-<pre><code>gh attestation verify Citadel-Agent.dmg --repo Avarok-Cybersecurity/citadel-workspace</code></pre>
+<pre><code>gh attestation verify Citadel-Agent.dmg <span class="nb">--repo</span> Avarok-Cybersecurity/citadel-workspace</code></pre>
 <p>Every file is also published beside a <code>.sha256</code> checksum. Compute the file's SHA-256 and compare it with that file on the <a href="https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest">release page</a>:</p>
 <dl class="facts">
 <dt>macOS</dt><dd><code>shasum -a 256 Citadel-Agent.dmg</code></dd>
