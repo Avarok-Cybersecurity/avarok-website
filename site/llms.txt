@@ -1,0 +1,49 @@
+# Avarok Cybersecurity
+
+> Avarok Cybersecurity builds post-quantum security and infrastructure software in Rust: the open-source Citadel Protocol SDK and the products built on it.
+
+Avarok Cybersecurity (https://avarok.net) is the company behind the Citadel Protocol and a family of products built on post-quantum cryptography and Rust. It was founded by Thomas Braun (https://thomaspbraun.com). Every product below is open source.
+
+## Products
+
+- [Citadel Workspace](https://avarok.net/citadel-workspace/): A post-quantum collaborative workspace: messages, calls, files and live documents travel directly between people, end-to-end encrypted. Site: https://work.avarok.net/ Source: https://github.com/Avarok-Cybersecurity/citadel-workspace (licence AGPL-3.0).
+- [Citadel Protocol SDK](https://avarok.net/citadel-protocol/): An open-source Rust SDK for post-quantum, end-to-end encrypted client-server and peer-to-peer networking, with NAT traversal built in. Site: https://github.com/Avarok-Cybersecurity/Citadel-Protocol Source: https://github.com/Avarok-Cybersecurity/Citadel-Protocol (licence MIT OR Apache-2.0).
+- [Citadel Agent](https://avarok.net/citadel-agent/): The local daemon (citadeld) that manages Citadel Protocol connections, so several apps on one machine can use them without embedding the SDK. Site: https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest Source: https://github.com/Avarok-Cybersecurity/citadel-agent (licence MIT).
+- [synchronized.work](https://avarok.net/synchronized-work/): Cross-person coordination for coding agents: one live tree of projects, tasks, people, agents and progress, with post-quantum signed prompts. Site: https://synchronized.work/ Source: https://github.com/Avarok-Cybersecurity/synchronized.work (licence MIT OR Apache-2.0).
+- [Atlas Inference](https://avarok.net/atlas-inference/): An open-source, pure Rust and CUDA LLM inference engine, hand-tuned for NVIDIA DGX Spark, with an OpenAI-compatible API. Site: https://atlasinference.io/ Source: https://github.com/Avarok-Cybersecurity/atlas (licence AGPL-3.0).
+- [CertifiedCopy](https://avarok.net/certifiedcopy/): Export iPhone and Mac text messages to PDF, CSV, JSON or RSMF in your browser, with a SHA-256 record of the source file. Nothing is uploaded. Site: https://certified.sh/ Source: https://github.com/Avarok-Cybersecurity/certified (licence AGPL-3.0).
+
+## Founder
+
+- [Thomas Braun](https://thomaspbraun.com): AI inference innovator and Rust expert. Founder of Atlas Cybernetics and creator of the Atlas Inference Engine, plus The Citadel Protocol and Avarok Cybersecurity. Holder of US patent 12224993, Recursive Cryptography Protocol.
+
+## Open source
+
+- [Citadel Protocol](https://github.com/Avarok-Cybersecurity/Citadel-Protocol): Post-quantum client-server and P2P networking SDK for Rust.
+- [Citadel Protocol examples](https://github.com/Avarok-Cybersecurity/citadel-protocol-examples): Example applications built on citadel_sdk.
+- [Citadel Agent](https://github.com/Avarok-Cybersecurity/citadel-agent): The local daemon (citadeld) that multiplexes Citadel connections for local apps.
+- [Citadel Workspace](https://github.com/Avarok-Cybersecurity/citadel-workspace): The post-quantum peer-to-peer workspace.
+- [Citadel Docs](https://github.com/Avarok-Cybersecurity/citadel-docs): A document editor core in pure Rust compiled to WASM: model, layout, DOCX, PDF, Markdown and text.
+- [LatticeDB](https://github.com/Avarok-Cybersecurity/lattice-db): A hybrid graph and vector database in pure Rust that runs in the browser with no backend.
+- [synchronized.work](https://github.com/Avarok-Cybersecurity/synchronized.work): Coordination for many people's coding agents, on Cloudflare Workers and the Citadel Protocol.
+- [Atlas](https://github.com/Avarok-Cybersecurity/atlas): Pure Rust and CUDA LLM inference engine.
+- [CertifiedCopy](https://github.com/Avarok-Cybersecurity/certified): In-browser export of iPhone and Mac messages with a SHA-256 record of the source.
+
+## Company pages
+
+- [Avarok Cybersecurity: post-quantum security and infrastructure in Rust](https://avarok.net/): Avarok Cybersecurity builds post-quantum security software in Rust: the open-source Citadel Protocol SDK, Citadel Workspace, synchronized.work, Atlas Inference and CertifiedCopy.
+- [About Avarok Cybersecurity and its founder, Thomas Braun](https://avarok.net/about/): Avarok Cybersecurity builds post-quantum security software in Rust. It was founded by Thomas Braun, creator of the Citadel Protocol and founder of Atlas Cybernetics.
+- [Atlas Inference: pure Rust and CUDA LLM inference for DGX Spark | Avarok](https://avarok.net/atlas-inference/): Atlas is an open-source, pure Rust and CUDA LLM inference engine hand-tuned for NVIDIA DGX Spark, with an OpenAI-compatible API and published, reproducible benchmarks.
+- [CertifiedCopy: export iPhone and Mac messages to PDF, privately | Avarok](https://avarok.net/certifiedcopy/): CertifiedCopy exports iPhone and Mac text messages to PDF, CSV, JSON or RSMF with a SHA-256 record of the source file. It runs entirely in your browser, so nothing is uploaded.
+- [Citadel Agent (citadeld): download the local Citadel daemon | Avarok](https://avarok.net/citadel-agent/): Download the Citadel Agent for macOS, Linux or Windows: the local daemon that manages Citadel Protocol connections for Citadel Workspace and other apps. Every download ships with a SHA-256 checksum and an ML-DSA signature.
+- [Citadel Protocol SDK (citadel_sdk): post-quantum networking for Rust | Avarok](https://avarok.net/citadel-protocol/): The Citadel Protocol is an open-source Rust SDK for post-quantum, end-to-end encrypted client-server and peer-to-peer networking, with NAT traversal, multi-layered ratcheting and an encrypted virtual filesystem.
+- [Citadel Workspace: post-quantum, peer-to-peer team collaboration | Avarok](https://avarok.net/citadel-workspace/): Citadel Workspace is a collaborative workspace where messages, calls, files and live documents are end-to-end encrypted with post-quantum cryptography and travel directly between people.
+- [Open-source projects from Avarok: Citadel Protocol, LatticeDB, Atlas and more](https://avarok.net/open-source/): Every Avarok product publishes its source: the Citadel Protocol SDK, Citadel Workspace, the Citadel Agent, Citadel Docs, LatticeDB, synchronized.work, Atlas and CertifiedCopy, under MIT, Apache-2.0 or AGPL-3.0.
+- [synchronized.work: coordinate many people's coding agents in one live tree | Avarok](https://avarok.net/synchronized-work/): synchronized.work is an open-source service that lets many people's coding agents share one live tree of projects, tasks, people, agents and progress, and receive post-quantum signed prompts.
+
+## Optional
+
+- [Acceptable Use Policy | Avarok](https://avarok.net/acceptable-use/)
+- [Cookie Policy | Avarok](https://avarok.net/cookie-policy/)
+- [Privacy Notice | Avarok](https://avarok.net/privacy/)
+- [Terms and Conditions | Avarok](https://avarok.net/terms/)

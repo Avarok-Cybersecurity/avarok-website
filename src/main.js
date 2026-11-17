@@ -1,9 +1,7 @@
 (() => {
   "use strict";
-  const doc = document.documentElement;
-
   // Menus are <details>: close them on outside click, Escape, or after following a link.
-  const menus = () => document.querySelectorAll("details.legal[open], details.mnav[open]");
+  const menus = () => document.querySelectorAll("details.mnav[open]");
   document.addEventListener("click", (e) => {
     for (const d of menus()) {
       if (!d.contains(e.target) || e.target.closest("a")) d.open = false;
@@ -17,19 +15,9 @@
     }
   });
 
-  // Scroll reveal for the feature groups (the original faded them in on intersection).
-  const reveals = document.querySelectorAll(".reveal");
-  if (reveals.length && "IntersectionObserver" in window) {
-    doc.classList.add("js");
-    const io = new IntersectionObserver((entries) => {
-      for (const en of entries) {
-        if (en.isIntersecting) {
-          en.target.classList.add("in");
-          io.unobserve(en.target);
-        }
-      }
-    }, { threshold: 0.1 });
-    reveals.forEach((el) => io.observe(el));
+  // Installable PWA: the service worker precaches the shell and serves /offline/ without a network.
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").catch((err) => console.warn("service worker not registered", err));
   }
 
   // Contact form: same EmailJS service/template/public key the original bundle used.
@@ -88,7 +76,7 @@
       say("Failed to send message.", mailto);
     } finally {
       button.disabled = false;
-      button.textContent = "Submit";
+      button.textContent = "Send message";
     }
   });
 })();

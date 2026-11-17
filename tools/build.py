@@ -1,41 +1,39 @@
 #!/usr/bin/env python3
-"""Generate site/ from src/. No dependencies beyond the Python standard library.
+"""Generate site/ from src/. Standard library only; site/ is wiped and rebuilt every run.
 
-src/pages/*.html carry a small front-matter block (title, description, path, layout) and the
-page body. Shared pieces (head, nav, links, CSS, JS) live once in src/ and are stamped into
-every page, so the output is plain static HTML with inline CSS and one deferred script.
+src/pages/*.html carry a front-matter block and the page body. Everything shared (head, header,
+family footer, product cards, JSON-LD, crawl files, manifest, service worker, headers) is
+derived from src/data/site.json and stamped in, so the output is plain static HTML with inline
+CSS (pinned by hash in the CSP) and one deferred script. src/static/ (the identity set that
+tools/brand.py writes) is copied to the site root unchanged.
 Run:  python3 tools/build.py
 """
 import base64
 import hashlib
+import json
 import pathlib
 import re
+import shutil
 import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from sitegen import chrome, crawl, jsonld, product  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 SITE = ROOT / "site"
-ORIGIN = "https://avarok.net"
-
-CLOSE_ICON = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/>'
-              '<path d="m6 6 12 12"/></svg>')
+REQUIRED = ("title", "description", "path", "layout", "updated")
+LAYOUTS = ("home", "page", "legal", "error")
+SW_SHELL = ("/", "/offline/", "/favicon.svg", "/logo.svg", "/site.webmanifest", "/icon-192.png")
 
 
 def read(p: pathlib.Path) -> str:
     return p.read_text(encoding="utf-8")
 
 
-def one(pattern: str) -> str:
-    hits = sorted((SITE / "img").glob(pattern))
-    if len(hits) != 1:
-        sys.exit(f"expected exactly one site/img/{pattern}, found {[h.name for h in hits]}")
-    return hits[0].name
-
-
 def minify_css(css: str) -> str:
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
-    css = re.sub(r"\s*\n\s*", "", css)
-    return css.strip()
+    return re.sub(r"\s*\n\s*", "", css).strip()
 
 
 def front_matter(text: str, name: str) -> tuple[dict, str]:
@@ -43,97 +41,104 @@ def front_matter(text: str, name: str) -> tuple[dict, str]:
     if not m:
         sys.exit(f"{name}: missing front matter")
     meta = dict(line.split(": ", 1) for line in m.group(1).splitlines())
-    for key in ("title", "description", "path", "layout"):
-        if key not in meta:
-            sys.exit(f"{name}: front matter lacks '{key}'")
+    missing = [k for k in REQUIRED if k not in meta]
+    if missing:
+        sys.exit(f"{name}: front matter lacks {missing}")
+    if meta["layout"] not in LAYOUTS:
+        sys.exit(f"{name}: unknown layout {meta['layout']}")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["updated"]):
+        sys.exit(f"{name}: 'updated' must be YYYY-MM-DD")
     return meta, text[m.end():]
 
 
+def out_path(path: str) -> pathlib.Path:
+    if path == "/":
+        return SITE / "index.html"
+    if path.endswith(".html"):
+        return SITE / path.lstrip("/")
+    return SITE / path.strip("/") / "index.html"
+
+
+def render(data: dict, meta: dict, body: str, head_t: str, css: str, js_name: str) -> str:
+    origin, layout = data["origin"], meta["layout"]
+    url = origin + meta["path"]
+    indexable = layout != "error"
+    head = (head_t.replace("{{TITLE}}", chrome.e(meta["title"]))
+            .replace("{{DESCRIPTION}}", chrome.e(meta["description"]))
+            .replace("{{AUTHOR}}", chrome.e(data["founder"]["name"]))
+            .replace("{{FOUNDER_URL}}", data["founder"]["url"])
+            .replace("{{OG_TYPE}}", "website")
+            .replace("{{OG_ALT}}", chrome.e(f'{data["organization"]["name"]}: {data["brand"]["tagline"]}'))
+            .replace("{{THEME_LIGHT}}", data["brand"]["pageLight"])
+            .replace("{{THEME_DARK}}", data["brand"]["pageDark"])
+            .replace("{{STYLE}}", css).replace("{{SCRIPT}}", js_name)
+            .replace("{{ROBOTS}}", '<meta name="robots" content="noindex">\n' if meta.get("noindex") == "true" else "")
+            .replace("{{JSONLD}}", jsonld.graph(data, meta, url) if indexable else ""))
+    if not indexable:
+        head = re.sub(r'<link rel="canonical"[^>]*>\n|<meta property="og:url"[^>]*>\n', "", head)
+    head = head.replace("{{CANONICAL}}", url).replace("{{ORIGIN}}", origin)
+
+    body = product.fill(data, meta, body.strip())
+    current = meta["path"] if meta["path"] in ("/open-source/", "/about/") else ""
+    top = chrome.header(data, current)
+    if layout == "page":
+        top += "\n" + chrome.crumbs(meta.get("crumb", meta["title"]))
+    if layout == "legal":
+        body = f'<article class="doc wrap">\n{body}\n</article>'
+    main = f'<main id="main" tabindex="-1">\n{body}\n</main>'
+    html = f"{head}\n<body>\n{top}\n{main}\n{chrome.footer(data)}\n</body>\n</html>\n"
+    if "{{" in html:
+        sys.exit(f"{meta['path']}: unresolved placeholder {re.search(r'{{[A-Z_]+}}', html).group(0)}")
+    return html
+
+
+def service_worker(js_name: str) -> str:
+    """sw.js prefixed with its precache list and a version that changes with any precached byte."""
+    precache = [*SW_SHELL, f"/js/{js_name}"]
+    template = read(SRC / "sw.js")
+    digest = hashlib.sha3_256(template.encode())
+    for url in precache:
+        file = out_path(url) if url.endswith("/") else SITE / url.lstrip("/")
+        digest.update(url.encode() + b"\n" + file.read_bytes())
+    version = digest.hexdigest()[:16]
+    return f"const VERSION = {json.dumps(version)};\nconst PRECACHE = {json.dumps(precache)};\n{template}"
+
+
 def main() -> None:
-    images = {
-        "HERO_SM": one("hero-sm.*.webp"),
-        "HERO_MD": one("hero-1280.*.webp"),
-        "HERO_LG": one("hero-1920.*.webp"),
-        "LOGO": one("logo-160.*.webp"),
-    }
+    data = json.loads(read(SRC / "data" / "site.json"))
+    if SITE.exists():
+        shutil.rmtree(SITE)
+    shutil.copytree(SRC / "static", SITE)
 
-    css = minify_css(read(SRC / "style.css"))
-    for k, v in images.items():
-        css = css.replace("{{" + k + "}}", v)
-    if "{{" in css:
-        sys.exit("unresolved placeholder in style.css")
+    css = minify_css(read(SRC / "style.css")) + chrome.accent_css(data)
     style_hash = base64.b64encode(hashlib.sha256(css.encode()).digest()).decode()
-
     js = read(SRC / "main.js")
     js_name = f"main.{hashlib.sha256(js.encode()).hexdigest()[:10]}.js"
-    (SITE / "js").mkdir(parents=True, exist_ok=True)
-    for old in (SITE / "js").glob("main.*.js"):
-        old.unlink()
+    (SITE / "js").mkdir()
     (SITE / "js" / js_name).write_text(js, encoding="utf-8")
 
     head_t = read(SRC / "partials" / "head.html")
-    links = read(SRC / "partials" / "links.html").strip()
-    nav = (read(SRC / "partials" / "nav.html").strip()
-           .replace("{{LINKS}}", links).replace("{{LOGO}}", images["LOGO"]))
-
-    hero_preload = (
-        f'<link rel="preload" as="image" href="/img/{images["HERO_SM"]}" media="(max-width:640px)" fetchpriority="high">\n'
-        f'<link rel="preload" as="image" href="/img/{images["HERO_MD"]}" media="(min-width:641px) and (max-width:1280px)" fetchpriority="high">\n'
-        f'<link rel="preload" as="image" href="/img/{images["HERO_LG"]}" media="(min-width:1281px)" fetchpriority="high">\n'
-    )
-
-    sitemap = []
+    pages, entries = [], []
     for page in sorted((SRC / "pages").glob("*.html")):
         meta, body = front_matter(read(page), page.name)
-        path, layout = meta["path"], meta["layout"]
-        canonical = ORIGIN + path
-        head = (head_t.replace("{{TITLE}}", meta["title"])
-                .replace("{{DESCRIPTION}}", meta["description"])
-                .replace("{{ORIGIN}}", ORIGIN)
-                .replace("{{STYLE}}", css)
-                .replace("{{SCRIPT}}", js_name)
-                .replace("{{PRELOAD}}", hero_preload if layout == "home" else ""))
-        if layout == "bare":
-            head = re.sub(r'<link rel="canonical"[^>]*>\n|<meta property="og:url"[^>]*>\n', "", head)
-        head = head.replace("{{CANONICAL}}", canonical)
-
-        if layout == "home":
-            content = f"{nav}\n{body.strip()}"
-        elif layout == "legal":
-            content = (f'{nav}\n<main class="legal-page">\n<article class="doc">\n'
-                       f'<a class="close" href="/" aria-label="Close and return to the home page">{CLOSE_ICON}</a>\n'
-                       f"{body.strip()}\n</article>\n</main>")
-        elif layout == "bare":
-            content = body.strip()
-        else:
-            sys.exit(f"{page.name}: unknown layout {layout}")
-
-        html = f"{head}<body>\n{content}\n</body>\n</html>\n"
-        if "{{" in html:
-            sys.exit(f"{page.name}: unresolved placeholder")
-        if path == "/":
-            out = SITE / "index.html"
-        elif path.endswith(".html"):
-            out = SITE / path.lstrip("/")
-        else:
-            out = SITE / path.strip("/") / "index.html"
+        out = out_path(meta["path"])
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(html, encoding="utf-8")
-        if layout != "bare":
-            sitemap.append(canonical)
+        out.write_text(render(data, meta, body, head_t, css, js_name), encoding="utf-8")
+        pages.append(meta)
+        if meta["layout"] != "error":
+            entries.append((data["origin"] + meta["path"], meta["updated"]))
         print(f"wrote {out.relative_to(ROOT)}")
+    pages.sort(key=lambda m: (m["path"] != "/", m["path"]))
 
-    urls = "".join(f"  <url><loc>{u}</loc></url>\n" for u in sorted(sitemap))
-    (SITE / "sitemap.xml").write_text(
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"{urls}</urlset>\n", encoding="utf-8")
-    (SITE / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n", encoding="utf-8")
-
-    headers = read(SRC / "_headers").replace("{{STYLE_HASH}}", style_hash)
+    (SITE / "sitemap.xml").write_text(crawl.sitemap(entries), encoding="utf-8")
+    (SITE / "robots.txt").write_text(crawl.robots(data), encoding="utf-8")
+    (SITE / "llms.txt").write_text(crawl.llms(data, pages), encoding="utf-8")
+    (SITE / "site.webmanifest").write_text(crawl.manifest(data), encoding="utf-8")
+    (SITE / "sw.js").write_text(service_worker(js_name), encoding="utf-8")
+    headers = (read(SRC / "_headers").replace("{{STYLE_HASH}}", style_hash)
+               .replace("{{CONTENT_SIGNAL}}", data["crawlers"]["contentSignal"]))
     (SITE / "_headers").write_text(headers, encoding="utf-8")
-    print("wrote site/sitemap.xml site/robots.txt site/_headers")
+    print("wrote site/sitemap.xml robots.txt llms.txt site.webmanifest sw.js _headers")
 
 
 if __name__ == "__main__":

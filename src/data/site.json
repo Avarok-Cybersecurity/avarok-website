@@ -1,0 +1,131 @@
+{
+  "//": "The one source for the organisation, its founder, the family of sites and every product. tools/build.py derives the cards, footer, JSON-LD, manifest, sitemap, robots.txt and llms.txt from it; tools/brand.py derives the icons and og-image; the tests read it to know which links and entities must exist. Every URL here was checked live (200, or a redirect to a 200) on the date in `verified`.",
+  "verified": "2026-11-17",
+  "origin": "https://avarok.net",
+  "brand": {
+    "name": "Avarok",
+    "shortName": "Avarok",
+    "tagline": "Post-quantum security and infrastructure",
+    "primary": "#5b3fa6",
+    "primaryDark": "#b9a6f2",
+    "pageLight": "#f7f6fb",
+    "pageDark": "#0f0c1a",
+    "ink": "#17132a",
+    "inkDark": "#f2effa",
+    "green": "#76b900"
+  },
+  "organization": {
+    "id": "https://avarok.net/#organization",
+    "name": "Avarok Cybersecurity",
+    "alternateName": "Avarok",
+    "legalName": "Avarok Corp",
+    "description": "Avarok Cybersecurity builds post-quantum security and infrastructure software in Rust: the open-source Citadel Protocol SDK and the products built on it.",
+    "email": "contact@avarok.net",
+    "address": { "streetAddress": "251 Little Falls Drive", "addressLocality": "Wilmington", "addressRegion": "DE", "postalCode": "19808", "addressCountry": "US" },
+    "sameAs": [
+      "https://github.com/Avarok-Cybersecurity",
+      "https://blog.avarok.net/",
+      "https://www.linkedin.com/company/avarok/",
+      "https://crates.io/crates/citadel_sdk"
+    ]
+  },
+  "founder": {
+    "id": "https://thomaspbraun.com/#person",
+    "name": "Thomas Braun",
+    "alternateName": "Thomas Phillip Braun",
+    "url": "https://thomaspbraun.com",
+    "jobTitle": "Founder",
+    "description": "AI inference innovator and Rust expert. Founder of Atlas Cybernetics and creator of the Atlas Inference Engine, plus The Citadel Protocol and Avarok Cybersecurity.",
+    "patent": "US patent 12224993, Recursive Cryptography Protocol",
+    "sameAs": [
+      "https://atlasinference.io",
+      "https://github.com/tbraun96",
+      "https://linkedin.com/in/tpbraun",
+      "https://certified.sh",
+      "https://blog.thomaspbraun.com/"
+    ]
+  },
+  "crawlers": {
+    "//": "robots.txt policy. Search and answer-engine crawlers are named so the policy is explicit; training crawlers stay allowed, as in the previous robots.txt, until the owner decides otherwise.",
+    "search": ["Googlebot", "Bingbot", "Applebot", "DuckDuckBot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Perplexity-User", "Claude-SearchBot", "Claude-User", "DuckAssistBot"],
+    "training": ["GPTBot", "ClaudeBot", "Google-Extended", "Applebot-Extended", "CCBot", "meta-externalagent"],
+    "trainingAllowed": true,
+    "contentSignal": "search=yes, ai-input=yes"
+  },
+  "atlasPublisher": { "@id": "https://atlascybernetics.ai/#org", "name": "Atlas Cybernetics Corp", "url": "https://atlasinference.io" },
+  "products": [
+    {
+      "id": "citadel-workspace", "name": "Citadel Workspace", "alternateName": "Citadel Workspaces",
+      "path": "/citadel-workspace/", "site": "https://work.avarok.net/", "siteLabel": "work.avarok.net",
+      "accent": "#6e59a5", "kind": "Collaboration",
+      "oneLiner": "A post-quantum collaborative workspace: messages, calls, files and live documents travel directly between people, end-to-end encrypted.",
+      "description": "Citadel Workspace is a collaborative workspace in which every message, file and call is end-to-end encrypted with post-quantum cryptography and travels directly between people rather than through a server that could read it.",
+      "category": "CommunicationApplication", "os": "Web browser (installable PWA), with the Citadel Agent on macOS, Linux or Windows",
+      "license": "AGPL-3.0", "repo": "https://github.com/Avarok-Cybersecurity/citadel-workspace",
+      "cta": "Open Citadel Workspace", "publisher": "avarok", "free": false
+    },
+    {
+      "id": "citadel-protocol", "name": "Citadel Protocol SDK", "alternateName": "citadel_sdk",
+      "path": "/citadel-protocol/", "site": "https://github.com/Avarok-Cybersecurity/Citadel-Protocol", "siteLabel": "GitHub",
+      "accent": "#5b3fa6", "kind": "Developer SDK",
+      "oneLiner": "An open-source Rust SDK for post-quantum, end-to-end encrypted client-server and peer-to-peer networking, with NAT traversal built in.",
+      "description": "The Citadel Protocol is a post-quantum secure networking protocol and Rust SDK (citadel_sdk) for building client-server and peer-to-peer applications, with built-in NAT traversal, multi-layered ratcheting and a remote encrypted virtual filesystem.",
+      "category": "DeveloperApplication", "os": "Linux, macOS, Windows, iOS, Android",
+      "license": "MIT OR Apache-2.0", "repo": "https://github.com/Avarok-Cybersecurity/Citadel-Protocol",
+      "extra": ["https://crates.io/crates/citadel_sdk", "https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/", "https://docs.rs/citadel_sdk/0.13.0/citadel_sdk/"],
+      "cta": "Read the Citadel Protocol source", "publisher": "avarok", "free": true
+    },
+    {
+      "id": "citadel-agent", "name": "Citadel Agent", "alternateName": "citadeld",
+      "path": "/citadel-agent/", "site": "https://github.com/Avarok-Cybersecurity/citadel-workspace/releases/latest", "siteLabel": "GitHub releases",
+      "accent": "#7c63c4", "kind": "Local daemon",
+      "oneLiner": "The local daemon (citadeld) that manages Citadel Protocol connections, so several apps on one machine can use them without embedding the SDK.",
+      "description": "The Citadel Agent (citadeld) is a local daemon that manages the lifecycle of Citadel Protocol connections and exposes them to local applications over a lightweight IPC interface, so several apps can share the protocol without embedding the SDK.",
+      "category": "UtilitiesApplication", "os": "macOS, Linux, Windows",
+      "license": "MIT", "repo": "https://github.com/Avarok-Cybersecurity/citadel-agent",
+      "cta": "Download the Citadel Agent", "publisher": "avarok", "free": true
+    },
+    {
+      "id": "synchronized-work", "name": "synchronized.work", "alternateName": "synchronized",
+      "path": "/synchronized-work/", "site": "https://synchronized.work/", "siteLabel": "synchronized.work",
+      "accent": "#76b900", "kind": "Agent coordination",
+      "oneLiner": "Cross-person coordination for coding agents: one live tree of projects, tasks, people, agents and progress, with post-quantum signed prompts.",
+      "description": "synchronized.work is an open-source coordination service that lets many people's coding agents share one live task tree (Project, Task, Person, Agent, Progress) and receive post-quantum signed prompts, with Sign in with Citadel.",
+      "category": "DeveloperApplication", "os": "Web browser",
+      "license": "MIT OR Apache-2.0", "repo": "https://github.com/Avarok-Cybersecurity/synchronized.work",
+      "cta": "Visit synchronized.work", "publisher": "avarok", "free": false
+    },
+    {
+      "id": "atlas-inference", "name": "Atlas Inference", "alternateName": "Atlas Inference Engine",
+      "path": "/atlas-inference/", "site": "https://atlasinference.io/", "siteLabel": "atlasinference.io",
+      "accent": "#49c3db", "kind": "AI inference",
+      "oneLiner": "An open-source, pure Rust and CUDA LLM inference engine, hand-tuned for NVIDIA DGX Spark, with an OpenAI-compatible API.",
+      "description": "Atlas is an open-source, pure Rust and CUDA LLM inference engine hand-tuned for NVIDIA DGX Spark, with an OpenAI-compatible API and published, reproducible benchmarks.",
+      "category": "DeveloperApplication", "os": "Linux (NVIDIA DGX Spark; AMD Strix Halo)",
+      "license": "AGPL-3.0", "repo": "https://github.com/Avarok-Cybersecurity/atlas",
+      "extra": ["https://atlasinference.io/engine"],
+      "cta": "Visit Atlas Inference", "publisher": "atlas", "free": true
+    },
+    {
+      "id": "certifiedcopy", "name": "CertifiedCopy", "alternateName": "certified.sh",
+      "path": "/certifiedcopy/", "site": "https://certified.sh/", "siteLabel": "certified.sh",
+      "accent": "#efb338", "kind": "Message export",
+      "oneLiner": "Export iPhone and Mac text messages to PDF, CSV, JSON or RSMF in your browser, with a SHA-256 record of the source file. Nothing is uploaded.",
+      "description": "CertifiedCopy exports iPhone and Mac text messages to PDF, CSV, JSON or RSMF with a SHA-256 record of the source file, and runs entirely in the browser, so nothing is uploaded.",
+      "category": "UtilitiesApplication", "os": "Any modern browser; a signed and notarised Mac app",
+      "license": "AGPL-3.0", "repo": "https://github.com/Avarok-Cybersecurity/certified",
+      "cta": "Visit CertifiedCopy", "publisher": "avarok", "free": true
+    }
+  ],
+  "openSource": [
+    { "name": "Citadel Protocol", "url": "https://github.com/Avarok-Cybersecurity/Citadel-Protocol", "license": "MIT OR Apache-2.0", "text": "Post-quantum client-server and P2P networking SDK for Rust." },
+    { "name": "Citadel Protocol examples", "url": "https://github.com/Avarok-Cybersecurity/citadel-protocol-examples", "license": "Apache-2.0", "text": "Example applications built on citadel_sdk." },
+    { "name": "Citadel Agent", "url": "https://github.com/Avarok-Cybersecurity/citadel-agent", "license": "MIT", "text": "The local daemon (citadeld) that multiplexes Citadel connections for local apps." },
+    { "name": "Citadel Workspace", "url": "https://github.com/Avarok-Cybersecurity/citadel-workspace", "license": "AGPL-3.0", "text": "The post-quantum peer-to-peer workspace." },
+    { "name": "Citadel Docs", "url": "https://github.com/Avarok-Cybersecurity/citadel-docs", "license": "MIT OR Apache-2.0", "text": "A document editor core in pure Rust compiled to WASM: model, layout, DOCX, PDF, Markdown and text." },
+    { "name": "LatticeDB", "url": "https://github.com/Avarok-Cybersecurity/lattice-db", "license": "MIT OR Apache-2.0", "text": "A hybrid graph and vector database in pure Rust that runs in the browser with no backend.", "docs": "https://avarok-cybersecurity.github.io/lattice-db/" },
+    { "name": "synchronized.work", "url": "https://github.com/Avarok-Cybersecurity/synchronized.work", "license": "MIT OR Apache-2.0", "text": "Coordination for many people's coding agents, on Cloudflare Workers and the Citadel Protocol." },
+    { "name": "Atlas", "url": "https://github.com/Avarok-Cybersecurity/atlas", "license": "AGPL-3.0", "text": "Pure Rust and CUDA LLM inference engine." },
+    { "name": "CertifiedCopy", "url": "https://github.com/Avarok-Cybersecurity/certified", "license": "AGPL-3.0", "text": "In-browser export of iPhone and Mac messages with a SHA-256 record of the source." }
+  ]
+}

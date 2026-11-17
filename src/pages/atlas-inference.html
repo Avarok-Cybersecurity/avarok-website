@@ -1,0 +1,40 @@
+---
+title: Atlas Inference: pure Rust and CUDA LLM inference for DGX Spark | Avarok
+description: Atlas is an open-source, pure Rust and CUDA LLM inference engine hand-tuned for NVIDIA DGX Spark, with an OpenAI-compatible API and published, reproducible benchmarks.
+path: /atlas-inference/
+layout: page
+updated: 2026-11-17
+product: atlas-inference
+crumb: Atlas Inference
+h1: Atlas Inference: a pure Rust LLM inference engine
+---
+{{PRODUCT_HERO}}
+<div class="wrap content narrow">
+{{PRODUCT_FACTS}}
+<section aria-labelledby="what-h">
+<h2 id="what-h">What is Atlas?</h2>
+<p>Atlas is an open-source LLM inference engine written in pure Rust and CUDA, with GPU kernels hand-tuned for NVIDIA DGX Spark. It runs open-weight models on your own hardware and serves them through an OpenAI-compatible API, with tool calling and streaming responses, so existing clients and agents can point at it unchanged. It is licensed AGPL-3.0, and its code, model recipes and benchmarks are public.</p>
+</section>
+<section aria-labelledby="models-h">
+<h2 id="models-h">Which models and hardware does Atlas support?</h2>
+<p>Atlas runs open models from the Qwen, Gemma, Nemotron and Mistral families; the <a href="https://atlasinference.io/engine">Atlas engine page</a> lists the supported models and recipes. It is verified on NVIDIA DGX Spark (GB10 Grace Blackwell), its kernels are also compiled for AMD Strix Halo, and it has been submitted to MLPerf Inference v6.1 on both.</p>
+</section>
+<section aria-labelledby="bench-h">
+<h2 id="bench-h">How fast is Atlas?</h2>
+<p>Atlas publishes its benchmarks with the hardware and method named. As published on atlasinference.io on 17 November 2026, for unsloth/Qwen3.8-27B-NVFP4 on an NVIDIA GB10 (121.7 GB unified memory), 128 input and 1,024 output tokens, mean of 3 timed repetitions:</p>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Concurrent requests</th><th scope="col">Atlas</th><th scope="col">vLLM + MTP</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>23.59 tok/s</td><td>19.72 tok/s</td></tr>
+<tr><td>32</td><td>291.01 tok/s</td><td>283.48 tok/s</td></tr>
+<tr><td>128</td><td>478.11 tok/s</td><td>358.57 tok/s</td></tr>
+</tbody></table></div>
+<p>At 128 concurrent requests that is 1.333 times the throughput of the matched vLLM configuration. The <a href="https://atlasinference.io/engine#verified">full Atlas benchmark methodology</a> and the <a href="https://github.com/Avarok-Cybersecurity/atlas/blob/main/bench/ladder38/RESULTS.md">raw benchmark results</a> are public.</p>
+</section>
+<section aria-labelledby="who-h">
+<h2 id="who-h">Who makes Atlas?</h2>
+<p>Atlas is built by Atlas Cybernetics, founded by {{FOUNDER}}, who also founded Avarok Cybersecurity. Its source lives in the Avarok-Cybersecurity organisation on GitHub. To deploy it, start with the <a href="https://github.com/Avarok-Cybersecurity/atlas/blob/main/docs/GB10_DEPLOYMENT_GUIDE.md">Atlas DGX Spark deployment guide</a>.</p>
+</section>
+{{PRODUCT_CTA}}
+<section aria-labelledby="rel-h"><h2 id="rel-h">More from Avarok</h2>{{RELATED}}</section>
+</div>

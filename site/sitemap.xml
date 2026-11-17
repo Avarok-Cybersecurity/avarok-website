@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://avarok.net/</loc></url>
-  <url><loc>https://avarok.net/acceptable-use/</loc></url>
-  <url><loc>https://avarok.net/cookie-policy/</loc></url>
-  <url><loc>https://avarok.net/privacy/</loc></url>
-  <url><loc>https://avarok.net/terms/</loc></url>
+  <url><loc>https://avarok.net/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/about/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/acceptable-use/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://avarok.net/atlas-inference/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/certifiedcopy/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/citadel-agent/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/citadel-protocol/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/citadel-workspace/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/cookie-policy/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://avarok.net/open-source/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/privacy/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://avarok.net/synchronized-work/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://avarok.net/terms/</loc><lastmod>2026-11-13</lastmod></url>
 </urlset>
