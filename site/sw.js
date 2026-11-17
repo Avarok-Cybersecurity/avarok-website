@@ -1,4 +1,4 @@
-const VERSION = "723432b202252d70";
+const VERSION = "a9be3001bf5e266f";
 const PRECACHE = ["/offline/", "/favicon.svg", "/logo.svg", "/site.webmanifest", "/icon-192.png", "/js/main.974f8cc91e.js"];
 // The service worker. tools/build.py emits it as /sw.js prefixed with VERSION (a SHA3 digest of
 // everything precached) and PRECACHE (the shell, the offline page, the icons and the script).
