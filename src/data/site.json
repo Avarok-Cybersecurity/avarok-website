@@ -62,7 +62,7 @@
       "description": "Citadel Workspace is a collaborative workspace in which every message, file and call is end-to-end encrypted with post-quantum cryptography and travels directly between people rather than through a server that could read it.",
       "category": "CommunicationApplication", "os": "Web browser (installable PWA), with the Citadel Agent on macOS, Linux or Windows",
       "license": "AGPL-3.0", "repo": "https://github.com/Avarok-Cybersecurity/citadel-workspace",
-      "cta": "Open Citadel Workspace", "publisher": "avarok", "free": false
+      "ctaHref": "https://work.avarok.net/", "cta": "Open Citadel Workspace", "publisher": "avarok", "free": false
     },
     {
       "id": "citadel-protocol", "name": "Citadel Protocol SDK", "alternateName": "citadel_sdk",
@@ -73,7 +73,7 @@
       "category": "DeveloperApplication", "os": "Linux, macOS, Windows, iOS, Android",
       "license": "MIT OR Apache-2.0", "repo": "https://github.com/Avarok-Cybersecurity/Citadel-Protocol",
       "extra": ["https://crates.io/crates/citadel_sdk", "https://avarok-cybersecurity.github.io/Citadel-Protocol/docs/", "https://docs.rs/citadel_sdk/0.13.0/citadel_sdk/"],
-      "cta": "Read the Citadel Protocol source", "publisher": "avarok", "free": true
+      "ctaHref": "https://github.com/Avarok-Cybersecurity/Citadel-Protocol", "cta": "Read the Citadel Protocol source", "publisher": "avarok", "free": true
     },
     {
       "id": "citadel-agent", "name": "Citadel Agent", "alternateName": "citadeld",
@@ -83,7 +83,7 @@
       "description": "The Citadel Agent (citadeld) is a local daemon that manages the lifecycle of Citadel Protocol connections and exposes them to local applications over a lightweight IPC interface, so several apps can share the protocol without embedding the SDK.",
       "category": "UtilitiesApplication", "os": "macOS, Linux, Windows",
       "license": "MIT", "repo": "https://github.com/Avarok-Cybersecurity/citadel-agent",
-      "cta": "Download the Citadel Agent", "publisher": "avarok", "free": true
+      "ctaHref": "/citadel-agent/#downloads", "cta": "Choose your Citadel Agent download", "publisher": "avarok", "free": true
     },
     {
       "id": "synchronized-work", "name": "synchronized.work", "alternateName": "synchronized",
@@ -93,7 +93,7 @@
       "description": "synchronized.work is an open-source coordination service that lets many people's coding agents share one live task tree (Project, Task, Person, Agent, Progress) and receive post-quantum signed prompts, with Sign in with Citadel.",
       "category": "DeveloperApplication", "os": "Web browser",
       "license": "MIT OR Apache-2.0", "repo": "https://github.com/Avarok-Cybersecurity/synchronized.work",
-      "cta": "Visit synchronized.work", "publisher": "avarok", "free": false
+      "ctaHref": "https://synchronized.work/", "cta": "Visit synchronized.work", "publisher": "avarok", "free": false
     },
     {
       "id": "atlas-inference", "name": "Atlas Inference", "alternateName": "Atlas Inference Engine",
@@ -104,7 +104,7 @@
       "category": "DeveloperApplication", "os": "Linux (NVIDIA DGX Spark; AMD Strix Halo)",
       "license": "AGPL-3.0", "repo": "https://github.com/Avarok-Cybersecurity/atlas",
       "extra": ["https://atlasinference.io/engine"],
-      "cta": "Visit Atlas Inference", "publisher": "atlas", "free": true
+      "ctaHref": "https://atlasinference.io/", "cta": "Visit Atlas Inference", "publisher": "atlas", "free": true
     },
     {
       "id": "certifiedcopy", "name": "CertifiedCopy", "alternateName": "certified.sh",
@@ -114,7 +114,7 @@
       "description": "CertifiedCopy exports iPhone and Mac text messages to PDF, CSV, JSON or RSMF with a SHA-256 record of the source file, and runs entirely in the browser, so nothing is uploaded.",
       "category": "UtilitiesApplication", "os": "Any modern browser; a signed and notarised Mac app",
       "license": "AGPL-3.0", "repo": "https://github.com/Avarok-Cybersecurity/certified",
-      "cta": "Visit CertifiedCopy", "publisher": "avarok", "free": true
+      "ctaHref": "https://certified.sh/", "cta": "Visit CertifiedCopy", "publisher": "avarok", "free": true
     }
   ],
   "openSource": [

@@ -51,7 +51,7 @@ svg{display:block}
 .btn-primary{background:var(--primary);color:var(--on-primary)}
 .btn-primary:hover{background:var(--primary-strong);border-color:var(--primary-strong);color:var(--on-primary)}
 .btn-ghost{background:transparent;color:var(--primary)}.btn-ghost:hover{background:var(--primary-soft)}
-.btn:disabled{opacity:.6;cursor:progress}
+.btn:disabled,.btn[aria-disabled=true]{opacity:.6;cursor:progress}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;min-width:0}
 .eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green-text);margin-bottom:10px}
 .lede{font-size:1.12rem;max-width:44em;margin:16px 0 28px}
@@ -74,7 +74,7 @@ svg{display:block}
 .product .kind{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .product p{flex:1}
 .product .meta{flex:none;font-size:.88rem;color:var(--muted);margin-bottom:14px}
-.product .actions{gap:8px}.product .btn{min-height:44px;padding:0 16px;font-size:.95rem}
+.product .actions{gap:8px 16px;align-items:center}.product .more{display:inline-flex;align-items:center;min-height:44px;font-weight:600}.product .btn{min-height:44px;padding:0 16px;font-size:.95rem}
 .pillar p{margin:0}
 .oss{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}.oss li+li{margin:0}
 .oss a{font-weight:700}.oss p{margin:4px 0 0;font-size:.95rem}.oss .lic{font-size:.8rem;color:var(--muted);font-family:var(--mono)}
@@ -107,7 +107,7 @@ svg{display:block}
 .form-status{min-height:1.6em;margin:0}
 
 /* legal */
-.doc{padding:32px 0 48px;max-width:56rem}.doc h1{font-size:1.8rem}.doc h2{font-size:1.2rem;margin-top:28px}
+.doc{padding:32px 0 48px;max-width:56rem;overflow-wrap:anywhere}.doc h1{font-size:1.8rem}.doc h2{font-size:1.2rem;margin-top:28px}
 .doc .right{color:var(--muted)}.doc ul.plain{list-style:none;padding-left:0}
 .table-wrap{overflow-x:auto}.doc table{border-collapse:collapse;min-width:100%}
 .doc th,.doc td{padding:8px 12px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}

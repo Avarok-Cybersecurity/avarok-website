@@ -24,7 +24,7 @@ SRC = ROOT / "src"
 SITE = ROOT / "site"
 REQUIRED = ("title", "description", "path", "layout", "updated")
 LAYOUTS = ("home", "page", "legal", "error")
-SW_SHELL = ("/", "/offline/", "/favicon.svg", "/logo.svg", "/site.webmanifest", "/icon-192.png")
+SW_SHELL = ("/offline/", "/favicon.svg", "/logo.svg", "/site.webmanifest", "/icon-192.png")
 
 
 def read(p: pathlib.Path) -> str:

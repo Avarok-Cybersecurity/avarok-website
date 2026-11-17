@@ -37,7 +37,7 @@ test('offline, any navigation shows the offline page from the cache', async ({ p
   await context.setOffline(true);
   await page.goto('/citadel-workspace/');
   await expect(page.getByRole('heading', { level: 1, name: "You're offline" })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Try again' })).toHaveAttribute('href', '/');
+  await expect(page.getByRole('link', { name: 'Try again' })).toHaveAttribute('href', new URL('/citadel-workspace/', page.url()).href);
   await context.setOffline(false);
 });
 

@@ -1,5 +1,5 @@
-const VERSION = "0c0e67746ba25fcd";
-const PRECACHE = ["/", "/offline/", "/favicon.svg", "/logo.svg", "/site.webmanifest", "/icon-192.png", "/js/main.5077ea338c.js"];
+const VERSION = "3f99020db301fecd";
+const PRECACHE = ["/offline/", "/favicon.svg", "/logo.svg", "/site.webmanifest", "/icon-192.png", "/js/main.974f8cc91e.js"];
 // The service worker. tools/build.py emits it as /sw.js prefixed with VERSION (a SHA3 digest of
 // everything precached) and PRECACHE (the shell, the offline page, the icons and the script).
 // It makes avarok.net installable and gives it an offline page. Navigations always try the
