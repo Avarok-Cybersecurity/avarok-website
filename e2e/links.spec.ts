@@ -35,13 +35,19 @@ async function collect(request: APIRequestContext): Promise<{ internal: Set<stri
 // repository: it answers 404 for a private one, unauthenticated) without asking GitHub to
 // render it, and GitHub answers anonymous renders of large files with a 503 "Unicorn" page
 // under load while the repository and the file are fine.
+//
+// Anonymous API calls share a 60-an-hour budget per IP, and CI runners share IPs, so a link
+// that exists read "contents API 403". In CI the job's own GITHUB_TOKEN is sent: it is scoped
+// to this repository, so a private repository still answers 404 and the check still proves
+// "public and present".
 const BLOB = /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/;
+const API_AUTH: Record<string, string> = process.env.GITHUB_TOKEN ? { authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {};
 
 async function resolves(request: APIRequestContext, browser: Browser, url: string): Promise<string> {
   const blob = url.match(BLOB);
   if (blob) {
     const [, owner, repo, ref, path] = blob;
-    const api = await request.get(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${ref}`, { headers: { 'user-agent': 'avarok-website-linkcheck', accept: 'application/vnd.github+json' } });
+    const api = await request.get(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${ref}`, { headers: { 'user-agent': 'avarok-website-linkcheck', accept: 'application/vnd.github+json', ...API_AUTH } });
     return api.status() === 200 ? '200 (contents API)' : `contents API ${api.status()}`;
   }
   const r = await request.get(url, { headers: { 'user-agent': UA, accept: 'text/html,*/*' }, maxRedirects: 10, timeout: 30_000 });
