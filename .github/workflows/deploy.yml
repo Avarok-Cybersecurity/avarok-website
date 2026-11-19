@@ -44,48 +44,93 @@ jobs:
           WRANGLER_SEND_METRICS: "false"
         run: npx wrangler deploy --dry-run --config workers/atlas-redirect/wrangler.toml --outdir .wrangler/atlas-redirect
 
-  lighthouse:
+  # GeoHarness (https://github.com/Avarok-Cybersecurity/geoharness) runs tools/build.py, writes markdown twins and
+  # llms-full.txt, adds Content Signals to robots.txt (the site's own sitemap.xml and llms.txt are kept), gates on
+  # the GEO score and on 100 in all four Lighthouse categories for every sitemap URL (served locally by wrangler
+  # with the deploy's own config), deploys an assets-only Cloudflare Worker on avarok.net and www.avarok.net,
+  # configures the zone and verifies the live site, rolling back if the live checks fail. Pull requests run the
+  # same pipeline with deploy: false: no secrets, no Cloudflare API call, no zone change. Settings: geoharness.toml.
+  #
+  # extra-optimizations leaves email_obfuscation alone: it is a zone-wide setting that rewrites the HTML of every
+  # proxied host on avarok.net (work.avarok.net, gitlab, auth, ...), and avarok.net does not need it changed.
+  # The rest only assert values the zone already has (rocket_loader off, early_hints/http3/brotli/tiered cache on,
+  # bot fight mode and AI-bot blocking off) or are scoped to these two hosts (the zstd compression rule).
+  dry-run:
+    name: Build and gate (dry run)
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: GeoHarness (dry run, deploy false)
+        id: geoharness
+        uses: Avarok-Cybersecurity/geoharness@d731c52513049f1042758af963dd1d16a9eea0b3 # main
         with:
-          node-version: "22"
-      - name: Generated site is up to date with src/
-        run: |
-          python3 tools/build.py
-          git diff --exit-code -- site
-          test -z "$(git status --porcelain -- site)"
-      - name: Lighthouse CI (mobile, 3 runs per page, every category must be 100)
-        run: npx --yes @lhci/cli@0.15.1 autorun
-      - name: Keep the Lighthouse reports
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: lighthouse-reports
-          path: .lighthouseci/
-          retention-days: 14
+          site-path: .
+          adapter: python
+          output-dir: site
+          target: workers
+          project-name: avarok-net
+          domains: |
+            avarok.net
+            www.avarok.net
+          lighthouse: "true"
+          lighthouse-max-urls: "13"
+          geo-min-score: "90"
+          extra-optimizations: all -email_obfuscation
+          deploy: "false"
 
   deploy:
-    needs: [gates, lighthouse]
+    name: Build, gate, deploy, verify
+    needs: gates
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 60
+    # Never cancel a deploy half way: runs for main queue behind each other.
+    concurrency:
+      group: deploy-avarok.net
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: https://avarok.net
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: GeoHarness (deploy)
+        id: geoharness
+        uses: Avarok-Cybersecurity/geoharness@d731c52513049f1042758af963dd1d16a9eea0b3 # main
         with:
-          node-version: "22"
-      - name: Deploy site/ to Cloudflare Pages
+          # A repository secret scoped to GeoHarness's permission groups on the avarok.net zone; the org-wide
+          # CLOUDFLARE_API_TOKEN stays with the atlas.avarok.net redirect job.
+          cloudflare-api-token: ${{ secrets.GEOHARNESS_CLOUDFLARE_API_TOKEN }}
+          cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          site-path: .
+          adapter: python
+          output-dir: site
+          target: workers
+          project-name: avarok-net
+          domains: |
+            avarok.net
+            www.avarok.net
+          lighthouse: "true"
+          lighthouse-max-urls: "13"
+          geo-min-score: "90"
+          extra-optimizations: all -email_obfuscation
+          deploy: "true"
+          # Pages owned both hosts (proxied CNAMEs to avarok-net.pages.dev). GeoHarness deletes those records and
+          # binds each host to the Worker at once; the Pages project avarok-net stays as the way back.
+          takeover-dns: "true"
+          # A build that fails the live GEO audit or the production Lighthouse gate is replaced by the previous one.
+          # The cut-over run has no earlier Worker version to go back to; GeoHarness says so and leaves it live.
+          rollback-on-failure: "true"
+      - name: Result
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: npx --yes wrangler@4.153.0 pages deploy site --project-name=avarok-net --branch=main --commit-dirty=true
+          GEO_SCORE: ${{ steps.geoharness.outputs.geo-score }}
+          URL: ${{ steps.geoharness.outputs.url }}
+        run: echo "GEO score $GEO_SCORE at $URL"
 
   # atlas.avarok.net -> https://atlasinference.io/engine (workers/atlas-redirect). The token needs
   # Account > Workers Scripts: Edit, and on the avarok.net zone Workers Routes: Edit and Zone: Read

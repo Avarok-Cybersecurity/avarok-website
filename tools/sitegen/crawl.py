@@ -27,7 +27,7 @@ def robots(data: dict) -> str:
         "# Crawlers that collect text for model training: "
         f"{'allowed' if c['trainingAllowed'] else 'not allowed'}.\n"
         f"{training}{rule}\n\n"
-        f"# Everything else. Content signals for this site, sent as a header too: {c['contentSignal']}\n"
+        "# Everything else.\n"
         "User-agent: *\nAllow: /\n\n"
         f"Sitemap: {data['origin']}/sitemap.xml\n")
 

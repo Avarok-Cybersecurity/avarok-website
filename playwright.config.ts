@@ -1,8 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
 // BASE_URL points the suite at a deployed site (e.g. BASE_URL=https://avarok.net after a deploy).
-// Without it, the suite runs against `wrangler pages dev site`, the same Pages runtime that
-// serves production, so _headers, content types and the 404 page behave as they will live.
+// Without it, the suite runs against `wrangler pages dev site`, which applies _headers, content
+// types and the 404 page from site/. Production is a Workers static-assets Worker deployed by
+// GeoHarness, which also gates Lighthouse against `wrangler dev` with the deploy's own config.
 const base = process.env.BASE_URL;
 const LOCAL = 'http://127.0.0.1:8788';
 

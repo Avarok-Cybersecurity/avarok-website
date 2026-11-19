@@ -23,7 +23,7 @@ User-agent: CCBot
 User-agent: meta-externalagent
 Allow: /
 
-# Everything else. Content signals for this site, sent as a header too: search=yes, ai-input=yes
+# Everything else.
 User-agent: *
 Allow: /
 

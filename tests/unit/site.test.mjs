@@ -1,9 +1,9 @@
 // The built site's crawl files, head tags and internal links, read from site/.
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
-import { DATA, SITE, meta, pages, read } from "./built.mjs";
+import { DATA, ROOT, SITE, meta, pages, read } from "./built.mjs";
 
 const ALL = pages();
 const indexable = ALL.filter((p) => p.canonical !== null);
@@ -48,6 +48,15 @@ test("robots.txt names the search, answer-engine and training crawlers and point
   for (const line of robots.split("\n").filter((l) => l && !l.startsWith("#"))) {
     assert.match(line, /^(User-agent|Allow|Disallow|Sitemap): \S/, `robots.txt directive Lighthouse would reject: ${line}`);
   }
+});
+
+test("geoharness.toml names the same crawlers as src/data/site.json, so the deploy's robots groups match the site's", () => {
+  const toml = readFileSync(path.join(ROOT, "geoharness.toml"), "utf8");
+  const groups = Object.fromEntries([...toml.matchAll(/^group = "(\w+)"\ntokens = \[([^\]]*)\]/gm)]
+    .map((m) => [m[1], [...m[2].matchAll(/"([^"]+)"/g)].map((t) => t[1]).sort()]));
+  assert.deepEqual([...groups.search, ...groups.user].sort(), [...DATA.crawlers.search].sort());
+  assert.deepEqual(groups.training, [...DATA.crawlers.training].sort());
+  assert.deepEqual(groups.other, ["*"]);
 });
 
 test("llms.txt names every product, its site, the founder and his site", () => {
