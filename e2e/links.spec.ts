@@ -9,6 +9,10 @@ import { DATA, sitemapPaths } from './support';
 // falls back to a real browser navigation, and fails if that is refused too.
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36';
 const BOT_WALLED = new Set([403, 429, 999]);
+// LinkedIn answers 999, its own non-standard bot-wall status, to real browser navigations from
+// datacenter IPs such as GitHub's runners, so from CI a live profile and a dead one look alike.
+// A 999 from linkedin.com is reported as walled rather than failed; any other status still fails.
+const WALL_ONLY = (url: string, status: number | undefined) => status === 999 && new URL(url).hostname.endsWith('linkedin.com');
 
 async function collect(request: APIRequestContext): Promise<{ internal: Set<string>; external: Map<string, string> }> {
   const paths = [...sitemapPaths(await (await request.get('/sitemap.xml')).text()), '/404.html', '/offline/'];
@@ -56,7 +60,8 @@ async function resolves(request: APIRequestContext, browser: Browser, url: strin
   const page = await browser.newPage({ userAgent: UA });
   try {
     const nav = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-    return nav && nav.status() < 400 ? `${nav.status()} (browser)` : `browser ${nav?.status()}`;
+    if (nav && nav.status() < 400) return `${nav.status()} (browser)`;
+    return WALL_ONLY(url, nav?.status()) ? '999 (walled)' : `browser ${nav?.status()}`;
   } finally {
     await page.close();
   }
@@ -87,6 +92,6 @@ test('every family, founder, source and download link resolves live', async ({ r
   }));
   expect(results.length).toBe(external.size);
   console.log(results.map(([url, , status]) => `${status.padEnd(14)} ${url}`).sort().join('\n'));
-  const broken = results.filter(([, , status]) => !/^\d{3}( \((browser|contents API)\))?$/.test(status) || Number(status.slice(0, 3)) >= 400);
+  const broken = results.filter(([, , status]) => status !== '999 (walled)' && (!/^\d{3}( \((browser|contents API)\))?$/.test(status) || Number(status.slice(0, 3)) >= 400));
   expect(broken.map(([url, from, status]) => `${url} (on ${from}): ${status}`)).toEqual([]);
 });
