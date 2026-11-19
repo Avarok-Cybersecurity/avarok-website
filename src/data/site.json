@@ -46,11 +46,10 @@
     ]
   },
   "crawlers": {
-    "//": "robots.txt policy. Search and answer-engine crawlers are named so the policy is explicit; training crawlers stay allowed, as in the previous robots.txt, until the owner decides otherwise.",
+    "//": "robots.txt policy. Search and answer-engine crawlers are named so the policy is explicit; training crawlers stay allowed, as in the previous robots.txt, until the owner decides otherwise. geoharness.toml names the same crawlers (tests/unit/site.test.mjs keeps the two in step) and owns the Content-Signal, which GeoHarness adds to robots.txt and _headers at deploy.",
     "search": ["Googlebot", "Bingbot", "Applebot", "DuckDuckBot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Perplexity-User", "Claude-SearchBot", "Claude-User", "DuckAssistBot"],
     "training": ["GPTBot", "ClaudeBot", "Google-Extended", "Applebot-Extended", "CCBot", "meta-externalagent"],
-    "trainingAllowed": true,
-    "contentSignal": "search=yes, ai-input=yes"
+    "trainingAllowed": true
   },
   "atlasPublisher": { "@id": "https://atlascybernetics.ai/#org", "name": "Atlas Cybernetics Corp", "url": "https://atlasinference.io" },
   "products": [

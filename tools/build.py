@@ -135,8 +135,7 @@ def main() -> None:
     (SITE / "llms.txt").write_text(crawl.llms(data, pages), encoding="utf-8")
     (SITE / "site.webmanifest").write_text(crawl.manifest(data), encoding="utf-8")
     (SITE / "sw.js").write_text(service_worker(js_name), encoding="utf-8")
-    headers = (read(SRC / "_headers").replace("{{STYLE_HASH}}", style_hash)
-               .replace("{{CONTENT_SIGNAL}}", data["crawlers"]["contentSignal"]))
+    headers = read(SRC / "_headers").replace("{{STYLE_HASH}}", style_hash)
     (SITE / "_headers").write_text(headers, encoding="utf-8")
     print("wrote site/sitemap.xml robots.txt llms.txt site.webmanifest sw.js _headers")
 
