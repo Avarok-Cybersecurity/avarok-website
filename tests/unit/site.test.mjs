@@ -61,7 +61,7 @@ test("geoharness.toml names the same crawlers as src/data/site.json, so the depl
 
 test("llms.txt names every product, its site, the founder and his site", () => {
   const llms = read("llms.txt");
-  assert.match(llms, /^# Avarok Cybersecurity\n\n> /);
+  assert.match(llms, /^# Avarok\n\n> /);
   for (const p of DATA.products) {
     assert.ok(llms.includes(`[${p.name}](${ORIGIN}${p.path})`), p.name);
     assert.ok(llms.includes(p.site), p.site);

@@ -16,8 +16,8 @@
   },
   "organization": {
     "id": "https://avarok.net/#organization",
-    "name": "Avarok Cybersecurity",
-    "alternateName": "Avarok",
+    "name": "Avarok",
+    "alternateName": "Avarok Cybersecurity",
     "legalName": "Avarok Corp",
     "description": "Avarok Cybersecurity builds post-quantum security and infrastructure software in Rust: the open-source Citadel Protocol SDK and the products built on it.",
     "email": "contact@avarok.net",

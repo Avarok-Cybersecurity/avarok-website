@@ -1,4 +1,4 @@
-# Avarok Cybersecurity
+# Avarok
 
 > Avarok Cybersecurity builds post-quantum security and infrastructure software in Rust: the open-source Citadel Protocol SDK and the products built on it.
 
