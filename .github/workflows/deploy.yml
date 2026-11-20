@@ -64,6 +64,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # Full history: GeoHarness dates pages from git (content.sources); a shallow clone dates every page HEAD.
+          fetch-depth: 0
       - name: GeoHarness (dry run, deploy false)
         id: geoharness
         uses: Avarok-Cybersecurity/geoharness@d731c52513049f1042758af963dd1d16a9eea0b3 # main
@@ -99,6 +101,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # Full history: GeoHarness dates pages from git (content.sources); a shallow clone dates every page HEAD.
+          fetch-depth: 0
       - name: GeoHarness (deploy)
         id: geoharness
         uses: Avarok-Cybersecurity/geoharness@d731c52513049f1042758af963dd1d16a9eea0b3 # main
