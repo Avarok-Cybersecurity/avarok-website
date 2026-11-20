@@ -68,7 +68,7 @@ jobs:
           fetch-depth: 0
       - name: GeoHarness (dry run, deploy false)
         id: geoharness
-        uses: Avarok-Cybersecurity/geoharness@d731c52513049f1042758af963dd1d16a9eea0b3 # main
+        uses: Avarok-Cybersecurity/geoharness@1d44cf1ee4b77dda12f9946a58b151efb730602d # main
         with:
           site-path: .
           adapter: python
@@ -105,7 +105,7 @@ jobs:
           fetch-depth: 0
       - name: GeoHarness (deploy)
         id: geoharness
-        uses: Avarok-Cybersecurity/geoharness@d731c52513049f1042758af963dd1d16a9eea0b3 # main
+        uses: Avarok-Cybersecurity/geoharness@1d44cf1ee4b77dda12f9946a58b151efb730602d # main
         with:
           # A repository secret scoped to GeoHarness's permission groups on the avarok.net zone; the org-wide
           # CLOUDFLARE_API_TOKEN stays with the atlas.avarok.net redirect job.

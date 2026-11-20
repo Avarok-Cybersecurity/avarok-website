@@ -20,13 +20,12 @@ sameAs = [
   "https://crates.io/crates/citadel_sdk",
 ]
 
-# The site already signals search=yes, ai-input=yes (src/data/site.json crawlers.contentSignal) and states no
-# ai-train preference. GeoHarness needs all three: training is not opted into until the owner says so, as on
-# thomaspbraun.com. robots.txt still admits the training crawlers, as it always has.
+# Search, answers that cite the site, and training are all allowed (owner decision 2026-11-19), matching
+# robots.txt, which admits the training crawlers.
 [contentSignal]
 search = true
 aiInput = true
-aiTrain = false
+aiTrain = true
 
 # The groups mirror src/data/site.json crawlers: search and answer engines, the agents that fetch for a user,
 # and training crawlers, all allowed.
