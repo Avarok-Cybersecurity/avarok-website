@@ -1,6 +1,6 @@
 {
   "id": "/",
-  "name": "Avarok Cybersecurity",
+  "name": "Avarok",
   "short_name": "Avarok",
   "description": "Avarok Cybersecurity builds post-quantum security and infrastructure software in Rust: the open-source Citadel Protocol SDK and the products built on it.",
   "start_url": "/",

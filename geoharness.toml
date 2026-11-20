@@ -5,13 +5,13 @@
 
 [site]
 origin = "https://avarok.net"
-name = "Avarok Cybersecurity"
+name = "Avarok"
 language = "en"
 
 # The organization and its profiles as src/data/site.json states them (organization.sameAs).
 [identity]
 kind = "organization"
-name = "Avarok Cybersecurity"
+name = "Avarok"
 url = "https://avarok.net"
 sameAs = [
   "https://github.com/Avarok-Cybersecurity",

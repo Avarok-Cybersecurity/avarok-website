@@ -15,7 +15,7 @@ const ASSETS: [string, RegExp, (b: Buffer) => void][] = [
   ['/og-image.png', new RegExp(`^${PNG}$`), (b) => expect(pngSize(b)).toEqual({ width: 1200, height: 630 })],
   ['/site.webmanifest', /^application\/manifest\+json/, (b) => expect(JSON.parse(b.toString()).display).toBe('standalone')],
   ['/robots.txt', /^text\/plain/, (b) => expect(b.toString()).toMatch(/^Sitemap: https:\/\/avarok\.net\/sitemap\.xml$/m)],
-  ['/llms.txt', /^text\/plain/, (b) => expect(b.toString()).toMatch(/^# Avarok Cybersecurity/)],
+  ['/llms.txt', /^text\/plain/, (b) => expect(b.toString()).toMatch(/^# Avarok\n/)],
   ['/sitemap.xml', /^(application|text)\/xml/, (b) => expect(b.toString()).toContain('<urlset')],
 ];
 
